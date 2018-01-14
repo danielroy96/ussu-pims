@@ -36,14 +36,14 @@
         </div>
         <div class="container">
             <div class="col-sm-6">
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-screenshot"></span> Start PAT testing equipment</p>
                     <ul>
                         <li>Test equipment for electrical safety</li>
                         <li>Bulk process barcodes</li>
                     </ul>
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-check"></span> Manage jobs and hires</p>
                     <ul>
                         <li>Create and modify jobs</li>
@@ -52,7 +52,7 @@
                 </button>
             </div>
             <div class="col-sm-6">
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-search"></span> Search for equipment</p>
                     <ul>
                         <li>Search for equipment in the database</li>
@@ -68,13 +68,15 @@
             </div>
             <div class="container">
                 <div class="col-sm-6">
-                    <button type="button" class="btn btn-primary">
-                        <p class="button-heading-text"><span class="glyphicon glyphicon-user"></span> Modify users and roles</p>
-                        <ul>
-                            <li>Add and remove users</li>
-                            <li>Modify users' roles</li>
-                        </ul>
-                    </button>
+                    <form action="/pims/user">
+                        <button type="submit" class="btn btn-primary dashboard-action">
+                            <p class="button-heading-text"><span class="glyphicon glyphicon-user"></span> Modify users and roles</p>
+                            <ul>
+                                <li>Add and remove users</li>
+                                <li>Modify users' roles</li>
+                            </ul>
+                        </button>
+                    </form>
                 </div>
                 <div class="col-sm-6">
 

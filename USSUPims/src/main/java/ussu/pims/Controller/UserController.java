@@ -6,15 +6,19 @@
 package ussu.pims.Controller;
 
 import java.security.Principal;
+import java.util.List;
 import ussu.pims.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import ussu.pims.Model.User;
 
 /**
@@ -22,25 +26,15 @@ import ussu.pims.Model.User;
  * @author danielroy
  */
 @Controller
+@RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
     
-    /**
-     * Maps requests for /index to the index view
-     * 
-     * @param model the model
-     * @return the index view name
-     * @throws Exception
-     */
-    @RequestMapping( value = "/index", method = RequestMethod.GET)
-    protected String helloUser(Model model, Principal principal) throws Exception {
-        String username = principal.getName();
-        User user = userService.loadUserByUsername(username);
-        model.addAttribute("userForename", userService.loadUserByUsername(username).getForename());
-        model.addAttribute("userRole", user.getAuthorities().toString());
-        return "index";
+    @RequestMapping(value="/user/search/f={forename}/s={surname}", method=RequestMethod.GET)
+    public List<User> searchUsers (@PathVariable("forename") String forename, @PathVariable("surname") String surname) {
+        return userService.searchUsers(forename, surname);
     }
     
     /**

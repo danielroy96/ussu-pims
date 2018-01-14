@@ -5,6 +5,7 @@
  */
 package ussu.pims.Service;
 
+import java.util.List;
 import ussu.pims.Model.User;
 import ussu.pims.DAO.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class UserService implements UserDetailsService{
         return userDAO.getUserByUsername(username);
     }
     
+    
+    public List<User> searchUsers(String forename, String surname) {
+        return userDAO.searchUsers(forename, surname);
+        
+    }
 
 }

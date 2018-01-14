@@ -1,0 +1,14 @@
+ussu/pims/MainInitialiser.class
+ussu/pims/Controller/LoginController.class
+ussu/pims/Config/DatasourceConfig.class
+ussu/pims/Config/WebConfig.class
+ussu/pims/Config/RootConfig.class
+ussu/pims/Mapper/UserMapper.class
+ussu/pims/Model/User.class
+ussu/pims/Config/SecurityWebApplicationInitializer.class
+ussu/pims/Config/SecurityConfig.class
+ussu/pims/Config/AppProperties.class
+ussu/pims/DAO/UserDAO.class
+ussu/pims/Service/UserService.class
+ussu/pims/Controller/UserController.class
+ussu/pims/Config/AuthorisationSuccessConfig.class

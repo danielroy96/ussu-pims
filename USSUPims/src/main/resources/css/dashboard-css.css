@@ -1,0 +1,29 @@
+.welcome-bar {
+    padding-top: 90px;
+    padding-bottom:20px;
+}
+
+.navbar-brand {
+    height:60px;
+}
+
+a.navbar-brand {
+    padding-top:20px;
+    margin-top:10px;
+}
+
+button.btn.btn-primary {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.button-heading-text {
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.logout-button {
+    margin-right: 10px;
+    background-color: #ffc90e;
+}

@@ -4,6 +4,7 @@
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/User.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/WebConfig.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/LoginController.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/ErrorHandler.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/AppProperties.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/AuthorisationSuccessConfig.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/UserService.java
@@ -12,3 +13,4 @@
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/DAO/UserDAO.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/UserController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/SecurityWebApplicationInitializer.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/DashboardController.java

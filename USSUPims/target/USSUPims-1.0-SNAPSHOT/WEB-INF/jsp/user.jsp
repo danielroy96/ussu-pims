@@ -5,9 +5,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="js/user.js" ></script>
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="js/user.js" ></script>
         <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/dashboard-css.css" rel="stylesheet">
         <title>PIMS</title>
@@ -35,13 +35,15 @@
         </div>
         <div class="container">
             <div class="col-sm-6">
-                <button type="button" class="btn btn-primary dashboard-action">
-                    <p class="button-heading-text"><span class="glyphicon glyphicon-flash"></span> Add a new user</p>
-                    <ul>
-                        <li>Allow someone new to use PIMS</li>
-                        <li>You'll need the user present to set a password</li>
-                    </ul>
-                </button>
+                <form action="/pims/user-details">
+                    <button type="submit" class="btn btn-primary dashboard-action">
+                        <p class="button-heading-text"><span class="glyphicon glyphicon-flash"></span> Add a new user</p>
+                        <ul>
+                            <li>Allow someone new to use PIMS</li>
+                            <li>You'll need the user present to set a password</li>
+                        </ul>
+                    </button>
+                </form>
             </div>
         </div>
         <div class="container">

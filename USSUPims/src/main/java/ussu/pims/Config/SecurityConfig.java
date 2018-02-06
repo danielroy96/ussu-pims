@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/createmessage/**").hasRole("USER")
                 .antMatchers("/currentuser/**").hasRole("USER")
                 .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/user-details/**").hasRole("ADMIN")
                 .antMatchers("webjars/**").permitAll()
                 .antMatchers("resources/**").permitAll()
                 .and()

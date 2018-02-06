@@ -20,8 +20,8 @@ public class User implements UserDetails {
     
     private int id;
     private String created_by_user;
-    private Date start_datetime;
-    private Date end_datetime;
+    private String start_datetime;
+    private String end_datetime;
     private String status;
     private String username;
     private String password;
@@ -30,6 +30,7 @@ public class User implements UserDetails {
     private String title;
     private String type;
     private String last_changed_by_user;
+    private String role;
     private ArrayList<SimpleGrantedAuthority> authorities;
     
     /**
@@ -40,7 +41,7 @@ public class User implements UserDetails {
      * @param password
      * @param role
      */
-    public User (int id, String created_by_user, Date start_datetime, Date end_datetime, String status, String username, String password, String forename, String surname, String title, String type, String last_changed_by_user, String role) {
+    public User (int id, String created_by_user, String start_datetime, String end_datetime, String status, String username, String password, String forename, String surname, String title, String type, String last_changed_by_user, String role) {
         this.authorities = new ArrayList<SimpleGrantedAuthority>();
         this.id = id;
         this.created_by_user = created_by_user;
@@ -54,6 +55,7 @@ public class User implements UserDetails {
         this.title = title;
         this.type = type;
         this.last_changed_by_user = last_changed_by_user;
+        this.role = role;
         authorities.add(new SimpleGrantedAuthority(role));//"ROLE_USER"
     }
 
@@ -73,19 +75,19 @@ public class User implements UserDetails {
         this.created_by_user = created_by_user;
     }
 
-    public Date getStart_datetime() {
+    public String getStart_datetime() {
         return start_datetime;
     }
 
-    public void setStart_datetime(Date start_datetime) {
+    public void setStart_datetime(String start_datetime) {
         this.start_datetime = start_datetime;
     }
 
-    public Date getEnd_datetime() {
+    public String getEnd_datetime() {
         return end_datetime;
     }
 
-    public void setEnd_datetime(Date end_datetime) {
+    public void setEnd_datetime(String end_datetime) {
         this.end_datetime = end_datetime;
     }
 
@@ -143,6 +145,14 @@ public class User implements UserDetails {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getLast_changed_by_user() {

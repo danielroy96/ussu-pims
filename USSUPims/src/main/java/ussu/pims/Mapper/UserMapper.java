@@ -8,6 +8,8 @@ package ussu.pims.Mapper;
 import ussu.pims.Model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -26,11 +28,12 @@ public class UserMapper implements RowMapper<User> {
      */
     @Override
     public User mapRow(ResultSet resultSet, int row) throws SQLException {
+        
         return new User(
                 resultSet.getInt("user_id"),
                 resultSet.getString("created_by_user"),
-                resultSet.getDate("start_datetime"),
-                resultSet.getDate("end_datetime"),
+                resultSet.getString("start_datetime"),
+                resultSet.getString("end_datetime"),
                 resultSet.getString("user_status"),
                 resultSet.getString("username"),
                 resultSet.getString("password"),

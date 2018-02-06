@@ -27,8 +27,33 @@
             </div>
         </nav>
         <div class="container welcome-bar">
-            <h2>Welcome to the PIMS Dashboard, ${userForename}</h3>
-                <p>Hi, choose something you want to do.</p>
+            <h2>Welcome to the PIMS Dashboard, ${userForename}</h2>
+        </div>
+        <div class="container">
+            <h1><small>PIMS Dashboard stats</small></h1>
+            <hr>
+            <h4>Current Test Stats <small> Equipment PAT testing progress</small></h4>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:40%">
+                    Tested
+                </div>
+                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width:35%">
+                    Expiring
+                </div>
+                <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" style="width:25%">
+                    Expired
+                </div>
+            </div>
+            <h4>Stock location <small> Equipment out on jobs</small></h4>
+            <div class="progress">
+                <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" style="width:80%">
+                    In
+                </div>
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:20%">
+                    Out
+                </div>
+
+            </div>
         </div>
         <div class="container">
             <h1><small>User dashboard tasks</small></h1>
@@ -37,17 +62,17 @@
         <div class="container">
             <div class="col-sm-6">
                 <button type="button" class="btn btn-primary dashboard-action">
-                    <p class="button-heading-text"><span class="glyphicon glyphicon-screenshot"></span> Start PAT testing equipment</p>
+                    <p class="button-heading-text"><span class="glyphicon glyphicon-screenshot"></span> PAT test equipment</p>
                     <ul>
                         <li>Test equipment for electrical safety</li>
                         <li>Bulk process barcodes</li>
                     </ul>
                 </button>
                 <button type="button" class="btn btn-primary dashboard-action">
-                    <p class="button-heading-text"><span class="glyphicon glyphicon-check"></span> Manage jobs and hires</p>
+                    <p class="button-heading-text"><span class="glyphicon glyphicon-qrcode"></span> Add new items</p>
                     <ul>
-                        <li>Create and modify jobs</li>
-                        <li>Check equipment in or out</li>
+                        <li>Add a new item to PIMS</li>
+                        <li>Bulk add items</li>
                     </ul>
                 </button>
             </div>
@@ -57,6 +82,13 @@
                     <ul>
                         <li>Search for equipment in the database</li>
                         <li>Test and repair equipment</li>
+                    </ul>
+                </button>
+                <button type="button" class="btn btn-primary dashboard-action">
+                    <p class="button-heading-text"><span class="glyphicon glyphicon-check"></span> Manage events</p>
+                    <ul>
+                        <li>Create and modify jobs</li>
+                        <li>Check equipment in or out</li>
                     </ul>
                 </button>
             </div>
@@ -70,7 +102,7 @@
                 <div class="col-sm-6">
                     <form action="/pims/user">
                         <button type="submit" class="btn btn-primary dashboard-action">
-                            <p class="button-heading-text"><span class="glyphicon glyphicon-user"></span> Modify users and roles</p>
+                            <p class="button-heading-text"><span class="glyphicon glyphicon-user"></span> Users and Roles</p>
                             <ul>
                                 <li>Add and remove users</li>
                                 <li>Modify users' roles</li>

@@ -90,45 +90,51 @@ function closeUserDeleteAlert() {
 }
 
 function createUser() {
-    var username = encodeURIComponent($('#username').val());
-    var password = encodeURIComponent($('#password').val());
-    var title = encodeURIComponent($('#title').val());
-    var forename = encodeURIComponent($('#forename').val());
-    var surname = encodeURIComponent($('#surname').val());
-    var userType = encodeURIComponent($('input[name=userType]:checked').val());
-    var userRole = encodeURIComponent($('input[name=userRole]:checked').val());
-    $.ajax({
-        url: 'user?username=' + username + '&password=' + password + '&title=' + title + '&forename=' + forename + '&surname=' + surname + '&userRole=' + userRole + '&userType=' + userType,
-        type: "PUT",
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            window.location = "user-details?user=" + response + "&created=true";
-        },
-        error: function (xhr, status, error) {
-            alert(xhr.responseText);
-        }
-    });
-    return false;
+    $('#userDetails').parsley().validate()
+    if ($('#userDetails').parsley().isValid()) {
+        var username = encodeURIComponent($('#username').val());
+        var password = encodeURIComponent($('#password').val());
+        var title = encodeURIComponent($('#title').val());
+        var forename = encodeURIComponent($('#forename').val());
+        var surname = encodeURIComponent($('#surname').val());
+        var userType = encodeURIComponent($('input[name=userType]:checked').val());
+        var userRole = encodeURIComponent($('input[name=userRole]:checked').val());
+        $.ajax({
+            url: 'user?username=' + username + '&password=' + password + '&title=' + title + '&forename=' + forename + '&surname=' + surname + '&userRole=' + userRole + '&userType=' + userType,
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                window.location = "user-details?user=" + response + "&created=true";
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+        return false;
+    }
 }
 
 function updateUser() {
-    var userID = $('#userID').val();
-    var title = encodeURIComponent($('#title').val());
-    var forename = encodeURIComponent($('#forename').val());
-    var surname = encodeURIComponent($('#surname').val());
-    var userType = encodeURIComponent($('input[name=userType]:checked').val());
-    var userRole = encodeURIComponent($('input[name=userRole]:checked').val());
-    $.ajax({
-        url: 'user/' + userID + '?title=' + title + '&forename=' + forename + '&surname=' + surname + '&userRole=' + userRole + '&userType=' + userType,
-        type: "PUT",
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            $('#userUpdateAlert').show();
-        },
-        error: function (xhr, status, error) {
-            alert(status);
-        }
-    });
+    $('#userDetails').parsley().validate()
+    if ($('#userDetails').parsley().isValid()) {
+        var userID = $('#userID').val();
+        var title = encodeURIComponent($('#title').val());
+        var forename = encodeURIComponent($('#forename').val());
+        var surname = encodeURIComponent($('#surname').val());
+        var userType = encodeURIComponent($('input[name=userType]:checked').val());
+        var userRole = encodeURIComponent($('input[name=userRole]:checked').val());
+        $.ajax({
+            url: 'user/' + userID + '?title=' + title + '&forename=' + forename + '&surname=' + surname + '&userRole=' + userRole + '&userType=' + userType,
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $('#userUpdateAlert').show();
+            },
+            error: function (xhr, status, error) {
+                alert(status);
+            }
+        });
+    }
 }
 
 function deleteUser() {

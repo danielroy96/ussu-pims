@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="webjars/parsleyjs/2.7.2/parsley.min.js"></script>
         <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <script src="js/user.js" ></script>
         <link href="css/dashboard-css.css" rel="stylesheet">
@@ -74,7 +75,7 @@
             <h2>${userFullName}<c:if test="${empty user.id}">Create a new user</c:if></h2>
             <p><c:if test="${not empty user.id}">Last updated ${user.start_datetime} by ${user.last_changed_by_user}</c:if></p>
             </div>
-            <form>
+            <form id='userDetails' data-parsley-validate>
                 <div class="container">
                     <div id="userCreateAlert" class="alert alert-success alert-dismissable" <c:if test="${empty created}">hidden="true"</c:if>>
                         <a href="#" class="close" onclick="closeUserCreateAlert();" aria-label="close">&times;</a>
@@ -138,7 +139,7 @@
                     <div class="form-group col-md-4">
                         <label for="userType">Membership type</label>
                         <div class="radio">
-                            <label for="typeStudent"><input name="userType" type="radio" id="typeStudent" value="STUDENT" required <c:if test="${user.type == 'STUDENT'}">checked</c:if>>Current student member</label>
+                            <label for="typeStudent"><input name="userType" type="radio" id="typeStudent" value="STUDENT" required <c:if test="${user.type == 'STUDENT' || empty user.type}">checked</c:if>>Current student member</label>
                             </div>
                             <div class="radio">
                                 <label for="typeAssociate"><input name="userType" type="radio" id="typeAssociate" value="ASSOCIATE" required <c:if test="${user.type == 'ASSOCIATE'}">checked</c:if>>Associate student member</label>
@@ -150,7 +151,7 @@
                         <div class="form-group col-md-8">
                             <label for="userRole">User account role</label>
                             <div class="radio">
-                                <label for="roleUser"><input name="userRole" type="radio" id="roleUser" value="ROLE_USER" required <c:if test="${user.role == 'ROLE_USER'}">checked</c:if>>Normal user account</label>
+                                <label for="roleUser"><input name="userRole" type="radio" id="roleUser" value="ROLE_USER" required <c:if test="${user.role == 'ROLE_USER' || empty user.role}">checked</c:if>>Normal user account</label>
                             </div>
                             <div class="radio">
                                 <label for="roleAdmin" data-toggle="tooltip" data-placement="right" title="Admin users can create/modify user accounts"><input name="userRole" type="radio" id="roleAdmin" value="ROLE_ADMIN" required <c:if test="${user.role == 'ROLE_ADMIN'}">checked</c:if>>Admin user account</label>

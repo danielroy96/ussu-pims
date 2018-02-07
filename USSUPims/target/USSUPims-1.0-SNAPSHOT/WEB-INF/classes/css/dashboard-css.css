@@ -26,3 +26,11 @@ button.btn.btn-primary.dashboard-action {
     margin-right: 10px;
     background-color: #ffc90e;
 }
+
+li.parsley-required {
+    display: none;
+}
+
+.form-control.parsley-error {
+    background-color: #ffb3b3;
+}

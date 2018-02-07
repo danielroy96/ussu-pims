@@ -40,7 +40,7 @@
                         <p class="button-heading-text"><span class="glyphicon glyphicon-flash"></span> Add a new user</p>
                         <ul>
                             <li>Allow someone new to use PIMS</li>
-                            <li>You'll need the user present to set a password</li>
+                            <li>You'll need the user to set a password</li>
                         </ul>
                     </button>
                 </form>

@@ -12,6 +12,31 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+                <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+                        <ul class="nav navbar-nav navbar-form navbar-right">
+                            <li>
+                                <button onclick="window.location='logout'" class="btn btn-warning logout-button">Log out</button>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
+                <div class="container welcome-bar">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="#"></a></li>
+                <li class="breadcrumb-item"><a href="£">Test</a></li>
+            </ol>
+        </div>
     </body>
 </html>

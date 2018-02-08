@@ -47,6 +47,26 @@ public class DashboardController {
         return "user";
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    protected String addDashboardAction(Model model, Principal principal) throws Exception {
+        return "add";
+    }
+
+    @RequestMapping(value = "/event", method = RequestMethod.GET)
+    protected String eventDashboardAction(Model model, Principal principal) throws Exception {
+        return "events";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    protected String searchDashboardAction(Model model, Principal principal) throws Exception {
+        return "search";
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    protected String testDashboardAction(Model model, Principal principal) throws Exception {
+        return "test";
+    }
+
     /*@RequestMapping(value="/user-details/{user}", method = RequestMethod.GET)
     protected String userDetailsUpdate(@PathVariable("user") String userID, Model model) throws Exception {
         User user = userService.getUser(Integer.parseInt(userID));
@@ -64,7 +84,6 @@ public class DashboardController {
         return "user-details";
     }
 
-    
 //    @RequestMapping(value = "/user/{userID}", method = RequestMethod.GET)
 //    protected String userDetails(@PathVariable String userID, Model model) throws Exception {
 //        User user = userService.getUser(Integer.parseInt(userID));
@@ -72,5 +91,4 @@ public class DashboardController {
 //        model.addAttribute("userFullName", user.getTitle() + " " + user.getForename() + " " + user.getSurname());
 //        return "user-details";
 //    }
-
 }

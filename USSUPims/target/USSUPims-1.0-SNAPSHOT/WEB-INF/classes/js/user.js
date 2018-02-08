@@ -56,12 +56,15 @@ function appendSearchResult(username, title, forename, surname, id) {
 }
 
 function resetPassword() {
-    var newPassword = $('#newPassword').val();
-    var userID = $('#userID').val();
-    ;
-    xmlHttpRequest.open('GET', 'user/' + userID + '/resetpassword/password=' + newPassword, true);
-    xmlHttpRequest.send();
-    xmlHttpRequest.onreadystatechange = processResetPassword;
+    if ($('#passwordReset').parsley().isValid()) {
+
+        var newPassword = $('#newPassword').val();
+        var userID = $('#userID').val();
+
+        xmlHttpRequest.open('GET', 'user/' + userID + '/resetpassword/password=' + newPassword, true);
+        xmlHttpRequest.send();
+        xmlHttpRequest.onreadystatechange = processResetPassword;
+    }
 }
 
 function processResetPassword() {

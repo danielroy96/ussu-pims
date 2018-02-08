@@ -17,16 +17,29 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
-                <form class="navbar-form navbar-right" action="/pims/logout">
-                    <button type="submit" class="btn btn-warning logout-button">Log out</button>
-                    <div class="form-group">
-                        <img class="navbar-brand" src="img/logo.png">
-                    </div>
-                </form>
+                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+                    <ul class="nav navbar-nav navbar-form navbar-right">
+                        <li>
+                            <button onclick="window.location = 'logout'" class="btn btn-warning logout-button">Log out</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container welcome-bar">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="index"></a></li>
+                <li class="breadcrumb-item">Users and Roles</li>
+            </ol>
+        </div>
+        <div class="container">
             <h2>Modify users and roles</h3>
         </div>
         <div class="container">

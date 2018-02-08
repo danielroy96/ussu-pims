@@ -18,28 +18,42 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
-                <form class="navbar-form navbar-right" action="/pims/logout">
-                    <button type="submit" class="btn btn-warning logout-button">Log out</button>
-                    <div class="form-group">
-                        <img class="navbar-brand" src="img/logo.png">
-                    </div>
-                </form>
+                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+                    <ul class="nav navbar-nav navbar-form navbar-right">
+                        <li>
+                            <button onclick="window.location = 'logout'" class="btn btn-warning logout-button">Log out</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
-        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form onsubmit="resetPassword(); return false;">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Reset Password for ${userFullName}</h5>
+        <div class="container welcome-bar">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="index"></a></li>
+                <li class="breadcrumb-item"><a href="user">Users and Roles</a></li>
+                <li class="breadcrumb-item">${userFullName}<c:if test="${empty user.id}">Create a new user</c:if></li>
+                </ol>
+            </div>
+            <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form id="passwordReset" onsubmit="resetPassword(); return false;" data-parsley-validate>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Reset Password for ${userFullName}</h5>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
                                 <p>Enter a new password for this user. Passwords must contain at least 8 characters.</p>
                                 <label for="newPassword">New password</label>
-                                <input id="newPassword" class="form-control" type="password" placeholder="New Password" required>
+                                <input id="newPassword" class="form-control" type="password" data-parsley-minlength="8" placeholder="New Password" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -71,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div class="container welcome-bar">
+        <div class="container">
             <h2>${userFullName}<c:if test="${empty user.id}">Create a new user</c:if></h2>
             <p><c:if test="${not empty user.id}">Last updated ${user.start_datetime} by ${user.last_changed_by_user}</c:if></p>
             </div>
@@ -101,7 +115,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password</label>
-                            <input type="password" required <c:if test="${not empty user.id}">disabled="true"</c:if> class="form-control" id="password" placeholder="Password" value="${user.password}">
+                            <input type="password" required data-parsley-minlength="8" <c:if test="${not empty user.id}">disabled="true"</c:if> class="form-control" id="password" placeholder="Password" value="${user.password}">
                             <p class="form-text text-muted">Your password must be at least 8 characters in length.</p>
                         </div>
                     </div>

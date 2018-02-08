@@ -17,13 +17,20 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
-                <form class="navbar-form navbar-right" action="/pims/logout">
-                    <button type="submit" class="btn btn-warning logout-button">Log out</button>
-                    <div class="form-group">
-                        <img class="navbar-brand" src="img/logo.png">
-                    </div>
-                </form>
+                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+                    <ul class="nav navbar-nav navbar-form navbar-right">
+                        <li>
+                            <button onclick="window.location = 'logout'" class="btn btn-warning logout-button">Log out</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container welcome-bar">
@@ -61,36 +68,36 @@
         </div>
         <div class="container">
             <div class="col-sm-6">
-                <button type="button" class="btn btn-primary dashboard-action">
+                <a href="test" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-screenshot"></span> PAT test equipment</p>
                     <ul>
                         <li>Test equipment for electrical safety</li>
                         <li>Bulk process barcodes</li>
                     </ul>
-                </button>
-                <button type="button" class="btn btn-primary dashboard-action">
+                </a>
+                <a href="add" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-qrcode"></span> Add new items</p>
                     <ul>
                         <li>Add a new item to PIMS</li>
                         <li>Bulk add items</li>
                     </ul>
-                </button>
+                </a>
             </div>
             <div class="col-sm-6">
-                <button type="button" class="btn btn-primary dashboard-action">
+                <a href="search" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-search"></span> Search for equipment</p>
                     <ul>
                         <li>Search for equipment in the database</li>
                         <li>Test and repair equipment</li>
                     </ul>
-                </button>
-                <button type="button" class="btn btn-primary dashboard-action">
+                </a>
+                <a href="event" class="btn btn-primary dashboard-action">
                     <p class="button-heading-text"><span class="glyphicon glyphicon-check"></span> Manage events</p>
                     <ul>
                         <li>Create and modify jobs</li>
                         <li>Check equipment in or out</li>
                     </ul>
-                </button>
+                </a>
             </div>
         </div>
         <c:if test="${userRole=='[ROLE_ADMIN]'}">
@@ -100,15 +107,13 @@
             </div>
             <div class="container">
                 <div class="col-sm-6">
-                    <form action="/pims/user">
-                        <button type="submit" class="btn btn-primary dashboard-action">
-                            <p class="button-heading-text"><span class="glyphicon glyphicon-user"></span> Users and Roles</p>
-                            <ul>
-                                <li>Add and remove users</li>
-                                <li>Modify users' roles</li>
-                            </ul>
-                        </button>
-                    </form>
+                    <a href="user" class="btn btn-primary dashboard-action">
+                        <p class="button-heading-text"><span class="glyphicon glyphicon-user"></span> Users and Roles</p>
+                        <ul>
+                            <li>Add and remove users</li>
+                            <li>Modify users' roles</li>
+                        </ul>
+                    </a>
                 </div>
                 <div class="col-sm-6">
 

@@ -1,17 +1,32 @@
 .welcome-bar {
-    padding-top: 90px;
+    padding-top:70px;
 }
+
+/*
 
 .navbar-brand {
     height:60px;
 }
 
+.navbar-nav {
+    line-height: 60px;
+    height: 60px;
+}
+
 a.navbar-brand {
     padding-top:20px;
     margin-top:10px;
+}*/
+
+/*.navbar-nav {
+    margin: inherit;
 }
 
-button.btn.btn-primary.dashboard-action {
+ul.nav.navbar-nav {
+    margin:inherit;
+}*/
+
+a.btn.btn-primary.dashboard-action {
     width: 100%;
     text-align: left;
     margin-bottom: 25px;
@@ -33,4 +48,7 @@ li.parsley-required {
 
 .form-control.parsley-error {
     background-color: #ffb3b3;
+}
+li.parsley-minlength {
+    display:none;
 }

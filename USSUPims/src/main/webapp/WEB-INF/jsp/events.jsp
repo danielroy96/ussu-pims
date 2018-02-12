@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <script src="js/main.js" ></script>
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <a class="navbar-brand" href="/pims/index">PIMS - Surrey Stage Crew</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>

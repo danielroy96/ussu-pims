@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="js/user.js" ></script>
@@ -16,7 +16,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <a class="navbar-brand" href="/pims/index">PIMS - Surrey Stage Crew</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -36,7 +36,7 @@
         <div class="container welcome-bar">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="index"></a></li>
-                <li class="breadcrumb-item">Users and Roles</li>
+                <li class="breadcrumb-item">Users</li>
             </ol>
         </div>
         <div class="container">
@@ -48,15 +48,13 @@
         </div>
         <div class="container">
             <div class="col-sm-6">
-                <form action="/pims/user-details">
-                    <button type="submit" class="btn btn-primary dashboard-action">
+                    <a href="user-details" class="btn btn-primary dashboard-action">
                         <p class="button-heading-text"><span class="glyphicon glyphicon-flash"></span> Add a new user</p>
                         <ul>
                             <li>Allow someone new to use PIMS</li>
                             <li>You'll need the user to set a password</li>
                         </ul>
-                    </button>
-                </form>
+                    </a>
             </div>
         </div>
         <div class="container">

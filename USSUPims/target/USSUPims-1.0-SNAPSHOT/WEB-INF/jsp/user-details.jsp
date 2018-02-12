@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="webjars/parsleyjs/2.7.2/parsley.min.js"></script>
@@ -17,7 +17,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/pims/index">PIMS - University of Surrey Students' Union</a>
+                    <a class="navbar-brand" href="/pims/index">PIMS - Surrey Stage Crew</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -37,7 +37,7 @@
         <div class="container welcome-bar">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="index"></a></li>
-                <li class="breadcrumb-item"><a href="user">Users and Roles</a></li>
+                <li class="breadcrumb-item"><a href="user">Users</a></li>
                 <li class="breadcrumb-item">${userFullName}<c:if test="${empty user.id}">Create a new user</c:if></li>
                 </ol>
             </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-danger">Delete ${userFullName} permanently</button>
+                            <button type="submit" class="btn btn-danger">Delete ${userFullName}</button>
                         </div>
                     </form>
                 </div>
@@ -156,7 +156,7 @@
                             <label for="typeStudent"><input name="userType" type="radio" id="typeStudent" value="STUDENT" required <c:if test="${user.type == 'STUDENT' || empty user.type}">checked</c:if>>Current student member</label>
                             </div>
                             <div class="radio">
-                                <label for="typeAssociate"><input name="userType" type="radio" id="typeAssociate" value="ASSOCIATE" required <c:if test="${user.type == 'ASSOCIATE'}">checked</c:if>>Associate student member</label>
+                                <label for="typeAssociate"><input name="userType" type="radio" id="typeAssociate" value="ASSOCIATE" required <c:if test="${user.type == 'ASSOCIATE'}">checked</c:if>>Associate member</label>
                             </div>
                             <div class="radio">
                                 <label for="typeStaff"><input name="userType" type="radio" id="typeStaff" value="STAFF" required <c:if test="${user.type == 'STAFF'}">checked</c:if>>Students' union staff</label>

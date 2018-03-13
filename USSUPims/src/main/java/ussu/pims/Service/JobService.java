@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ussu.pims.Mapper;
+package ussu.pims.Service;
+
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author danielroy
  */
-public class EventMapper {
+@Service
+public class JobService {
     
 }

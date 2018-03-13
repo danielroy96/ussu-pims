@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ussu.pims.Service;
+package ussu.pims.DAO;
+
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author danielroy
  */
-public class EventService {
-    
+@Repository
+public class ItemTypeDAO {
+   //TODO
 }

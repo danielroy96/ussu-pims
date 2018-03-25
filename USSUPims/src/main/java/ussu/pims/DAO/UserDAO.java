@@ -147,6 +147,33 @@ public class UserDAO {
         return jdbcTemplate.query(SQL, new UserMapper(), forename, surname);
     }
 
+    public List<User> quickSearchUsers(String searchTerm) {
+        String SQL = "SELECT\n"
+                + "  u.id user_id\n"
+                + ", CONCAT(udcc.title, ' ', udcc.forename, ' ', udcc.surname) created_by_user\n"
+                + ", DATE_FORMAT(udce.start_datetime, '%H:%i %d/%m/%Y') start_datetime\n"
+                + ", DATE_FORMAT(udce.end_datetime, '%H:%i %d/%m/%Y') end_datetime\n"
+                + ", us.display_text user_status\n"
+                + ", udce.username\n"
+                + ", udce.password\n"
+                + ", udce.forename\n"
+                + ", udce.surname\n"
+                + ", udce.title\n"
+                + ", ut.type_mnem user_type\n"
+                + ", CONCAT(udcl.title, ' ', udcl.forename, ' ', udcl.surname) last_changed_by_user\n"
+                + ", udce.user_role\n"
+                + "FROM pims.users u\n"
+                + "JOIN pims.user_details_current_extant udce ON u.id = udce.user_id\n"
+                + "JOIN pims.users uc ON u.created_by_user_id = uc.id\n"
+                + "JOIN pims.user_details_current udcc ON uc.id = udcc.user_id\n"
+                + "JOIN pims.user_statuses us ON udce.status = us.status_mnem\n"
+                + "JOIN pims.user_types ut ON udce.user_type = ut.type_mnem\n"
+                + "JOIN pims.user_details_current udcl ON udce.last_changed_by_user_id = udcl.user_id\n"
+                + "WHERE CONCAT (udce.title, ' ', udce.forename, ' ', udce.surname) LIKE CONCAT('%', ?, '%')\n"
+                + "ORDER BY udce.surname ASC";
+        return jdbcTemplate.query(SQL, new UserMapper(), searchTerm);
+    }
+
     public void resetPassword(int userID, int currentUserID, String newPassword) {
         String userDetailIDSQL = "SELECT ud.id FROM pims.user_details ud WHERE ud.user_id = ? AND ud.status_control = 'C'";
         int userDetailID = Integer.parseInt((String) jdbcTemplate.queryForObject(userDetailIDSQL, new Object[]{userID}, String.class));

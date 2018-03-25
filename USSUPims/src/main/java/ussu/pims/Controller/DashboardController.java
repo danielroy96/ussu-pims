@@ -64,6 +64,9 @@ public class DashboardController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     protected String testDashboardAction(Model model, Principal principal) throws Exception {
+        User user = userService.loadUserByUsername(principal.getName());
+        model.addAttribute("userFullName", user.getTitle() + " " + user.getForename() + " " + user.getSurname());
+        model.addAttribute("userID", user.getId());
         return "test";
     }
 

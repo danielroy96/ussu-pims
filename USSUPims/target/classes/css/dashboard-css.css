@@ -52,3 +52,7 @@ li.parsley-required {
 li.parsley-minlength {
     display:none;
 }
+
+ul.parsley-errors-list {
+    display:none;
+}

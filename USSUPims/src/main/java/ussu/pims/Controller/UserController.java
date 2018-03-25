@@ -34,6 +34,11 @@ public class UserController {
     public List<User> searchUsers(@PathVariable("forename") String forename, @PathVariable("surname") String surname) {
         return userService.searchUsers(forename, surname);
     }
+    
+    @RequestMapping(value="/user/quicksearch", method = RequestMethod.GET)
+    public List<User> quickSearchUsers(@RequestParam String searchTerm) {
+        return userService.quickSearchUsers(searchTerm);
+    }
 
     @RequestMapping(value = "user/{userID}/resetpassword/password={newPassword}", method = RequestMethod.GET)
     public ResponseEntity<Object> resetPassword(@PathVariable("userID") String userID, @PathVariable("newPassword") String newPassword, Principal principal) throws Exception {

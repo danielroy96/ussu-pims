@@ -9,9 +9,11 @@
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="webjars/parsleyjs/2.7.2/parsley.min.js"></script>
         <script src="webjars/bootstrap-select/1.4.2/bootstrap-select.min.js"></script>
+        <script src="webjars/ajax-bootstrap-select/1.4.0/dist/js/ajax-bootstrap-select.js"></script>
         <script src="js/test.js" ></script>
         <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="webjars/bootstrap-select/1.4.2/bootstrap-select.min.css" rel="stylesheet">
+        <link href="webjars/ajax-bootstrap-select/1.4.0/dist/css/ajax-bootstrap-select.css" rel="stylesheet">
         <link href="css/dashboard-css.css" rel="stylesheet">
         <link href="css/test-css.css" rel="stylesheet">
         <title>PIMS</title>
@@ -45,30 +47,75 @@
             <h2>PAT Testing</h2>
             <h1><small>Test an item</small></h1>
             <hr>
-            <form id="patTest" data-parsley-validate>
+            <form id="patTest" data-parsley-validate onsubmit="test(); return false;">
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="testOperator">Test Operator</label>
                         <select id="testOperator" class="selectpicker form-control" data-live-search="true">
-                            <option>Mr Daniel Roy</option>
-                            <option>Mr Samuel Diaz</option>
+                            <option value="${userID}">${userFullName}</option>
                         </select>
+                        <p class="form-text text-muted">Start typing to find a user</p>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="itemBarcode">Item Barcode</label>
-                        <input id="itemBarcode" class="form-control" type="tel" autofocus>
+                        <input id="itemBarcode" class="form-control" type="tel" placeholder="Scan barcode" autofocus required>
+                        <p class="form-text text-muted">Your barcode must match an item in PIMS</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <div class="checkbox">
+                            <p><strong>Test measurements</strong></p>
+                            <label for="includeTestMeasurements"><input name="includeTestMeasurements" id="includeTestMeasurements" type="checkbox" onchange="enableDisableTestMeasurements()"> Record test measurements</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4 testMeasurements">
+                        <label for="earthResistanceOhms">Earth resistance</label>
+                        <div class="input-group">
+                            <input class="form-control" type="tel" id="earthResistanceOhms" name="earthResistanceOhms" aria-describedby="earthResistanceOhmsUnits" required>
+                            <span class="input-group-addon" id="earthResistanceOhmsUnits">Ω</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4 testMeasurements">
+                        <label for="insulationResistanceMOhms">Insulation resistance</label>
+                        <div class="input-group">
+                            <input class="form-control" type="tel" id="insulationResistanceMOhms" name="insulationResistanceMOhms" aria-describedby="insulationResistanceMOhmsUnits" required>
+                            <span class="input-group-addon" id="insulationResistanceMOhmsUnits">MΩ</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button id="btnTest" onclick="test(); return false;" class="btn btn-success" type="button">Test</button>
+                        <button id="btnTest" class="btn btn-success" type="submit">Test</button>
                     </div>
                 </div>
             </form>
-            <h1><small>Successful tests</small></h1>
-            <hr>
-            <div id="noTestAlert" class="alert alert-info alert-dismissable">
-                As you test items, their test results will appear here.
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <h1><small>Successful tests</small></h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div id="noTestAlert" class="alert alert-info alert-dismissable">
+                        As you test items, their test results will appear here.
+                    </div>
+                    <table id="completedTestTable" class="table" hidden>
+                        <thead>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>Test Operator</th>
+                            </tr>
+                        </thead>
+                        <tbody class="testedItems">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </body>

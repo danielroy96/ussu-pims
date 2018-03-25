@@ -9,7 +9,7 @@
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="webjars/parsleyjs/2.7.2/parsley.min.js"></script>
         <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <script src="js/user.js" ></script>
+        <script src="js/user-details.js" ></script>
         <link href="css/dashboard-css.css" rel="stylesheet">
         <title>PIMS</title>
     </head>

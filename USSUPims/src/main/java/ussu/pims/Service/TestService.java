@@ -20,8 +20,12 @@ public class TestService {
     @Autowired
     private TestDAO testDAO;
     
-    public void testItem(int itemID, Float earthResistanceOhms, Float insulationResistanceMOhms, int userID) {
-        testDAO.testItem(itemID, earthResistanceOhms, insulationResistanceMOhms, userID);
+    public void testItemIncludeMeasurements(int itemID, float earthResistanceOhms, float insulationResistanceMOhms, int testOperatorUserID) {
+        testDAO.testItemIncludeMeasurements(itemID, earthResistanceOhms, insulationResistanceMOhms, testOperatorUserID);
+    }
+    
+    public void testItem(int itemID, int testOperatorUserID) {
+        testDAO.testItem(itemID, testOperatorUserID);
     }
     
 }

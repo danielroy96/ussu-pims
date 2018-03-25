@@ -138,6 +138,12 @@
             <artifactId>bootstrap-select</artifactId>
             <version>1.4.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/ajax-bootstrap-select -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>ajax-bootstrap-select</artifactId>
+            <version>1.4.0</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>

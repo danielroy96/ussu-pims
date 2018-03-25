@@ -29,7 +29,7 @@ public class TestDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void testItem(final int itemID, final Float earthResistanceOhms, final Float insulationResistanceMOhms, final int userID) {
+    public void testItemIncludeMeasurements(final int itemID, final Float earthResistanceOhms, final Float insulationResistanceMOhms, final int testOperatorUserID) {
         final String testSQL = ""
                 + "INSERT INTO pims.tests ("
                 + "  item_id"
@@ -51,7 +51,7 @@ public class TestDAO {
                     public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                         PreparedStatement preparedStatement = connection.prepareStatement(testSQL, new String[]{"id"});
                         preparedStatement.setInt(1, itemID);
-                        preparedStatement.setInt(2, userID);
+                        preparedStatement.setInt(2, testOperatorUserID);
                         preparedStatement.setFloat(3, earthResistanceOhms);
                         preparedStatement.setFloat(4, insulationResistanceMOhms);
                         return preparedStatement;
@@ -74,7 +74,49 @@ public class TestDAO {
                 + ", ?"
                 + ", ?"
                 + ")";
-        jdbcTemplate.update(eventSQL, itemID, userID, keyHolder.getKey());
+        jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());
+    }
+    
+        public void testItem(final int itemID, final int testOperatorUserID) {
+        final String testSQL = ""
+                + "INSERT INTO pims.tests ("
+                + "  item_id"
+                + ", test_datetime"
+                + ", test_user"
+                + ") VALUES ("
+                + "  ?"
+                + ", NOW()"
+                + ", ?"
+                + ")";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(
+                new PreparedStatementCreator() {
+                    @Override
+                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                        PreparedStatement preparedStatement = connection.prepareStatement(testSQL, new String[]{"id"});
+                        preparedStatement.setInt(1, itemID);
+                        preparedStatement.setInt(2, testOperatorUserID);
+                        return preparedStatement;
+                    }
+            }, keyHolder
+        );
+        String eventSQL = ""
+                + "INSERT INTO pims.item_events ("
+                + "  mnem"
+                + ", display_text"
+                + ", item_id"
+                + ", event_datetime"
+                + ", event_user_id"
+                + ", test_id"
+                + ") VALUES ("
+                + "  'TEST'"
+                + ", 'Item PAT tested'"
+                + ", ?"
+                + ", NOW()"
+                + ", ?"
+                + ", ?"
+                + ")";
+        jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());
     }
 
 }

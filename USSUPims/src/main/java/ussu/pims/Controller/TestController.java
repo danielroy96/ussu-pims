@@ -5,7 +5,6 @@
  */
 package ussu.pims.Controller;
 
-import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ussu.pims.Service.ItemService;
 import ussu.pims.Service.TestService;
-import ussu.pims.Service.UserService;
 
 /**
  *
@@ -31,13 +29,17 @@ public class TestController {
     @Autowired
     private ItemService itemService;
     
-    @Autowired
-    private UserService userService;
-
-    @RequestMapping(value="item/{barcode}/test", method = RequestMethod.PUT)
-    public ResponseEntity<Object> testItem(@PathVariable String barcode, @RequestParam String earthResistanceOhms, @RequestParam String insulationResistanceMOhms, Principal principal) {
-        testService.testItem(itemService.getItemId(barcode), Float.parseFloat(earthResistanceOhms), Float.parseFloat(insulationResistanceMOhms), userService.getUserID(principal));
+    @RequestMapping(value="/item/{barcode}/testmeasurements", method = RequestMethod.PUT)
+    public ResponseEntity<Object> testItemIncludeMeasurements(@RequestParam String testOperator, @PathVariable String barcode, @RequestParam String earthResistanceOhms, @RequestParam String insulationResistanceMOhms) {
+        testService.testItemIncludeMeasurements(itemService.getItemId(barcode), Float.parseFloat(earthResistanceOhms), Float.parseFloat(insulationResistanceMOhms), Integer.parseInt(testOperator));
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @RequestMapping(value="/item/{barcode}/test", method = RequestMethod.PUT)
+    public ResponseEntity<Object> testItem(@RequestParam String testOperator, @PathVariable String barcode) {
+        testService.testItem(itemService.getItemId(barcode), Integer.parseInt(testOperator));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
 
 }

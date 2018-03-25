@@ -55,7 +55,10 @@ public class UserService implements UserDetailsService{
     
     public List<User> searchUsers(String forename, String surname) {
         return userDAO.searchUsers(forename, surname);
-        
+    }
+    
+    public List<User> quickSearchUsers(String searchTerm) {
+        return userDAO.quickSearchUsers(searchTerm);
     }
     
     public Number createUser(int currentUserID, String username, String password, String title, String forename, String surname, String userType, String userRole) {

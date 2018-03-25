@@ -5,9 +5,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <script src="js/main.js" ></script>
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="js/main.js" ></script>
         <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/dashboard-css.css" rel="stylesheet">
         <title>PIMS</title>
@@ -33,6 +33,29 @@
                 </div>
             </div>
         </nav>
+        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="passwordReset" onsubmit="resetPassword(); return false;" data-parsley-validate>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Change my password</h5>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p>Enter your new password. Passwords must contain at least 8 characters.</p>
+                                <label for="newPassword">New password</label>
+                                <input id="newPassword" class="form-control" type="password" data-parsley-minlength="8" placeholder="New Password" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="container welcome-bar">
             <h2>Welcome to the PIMS Dashboard, ${userForename}</h2>
         </div>
@@ -96,6 +119,21 @@
                     <ul>
                         <li>Create and modify jobs</li>
                         <li>Check equipment in or out</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <h1><small>Account options</small></h1>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="col-sm-6">
+                <a class="btn btn-primary dashboard-action" data-toggle="modal" data-target="#passwordModal">
+                    <p class="button-heading-text"><span class="glyphicon glyphicon-lock"></span> Change my password</p>
+                    <ul>
+                        <li>Account tasks</li>
+                        <li>Change my account password</li>
                     </ul>
                 </a>
             </div>

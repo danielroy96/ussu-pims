@@ -24,16 +24,25 @@ import ussu.pims.Service.UserService;
  */
 @RestController
 public class ItemController {
-    
+
     @Autowired
     private ItemService itemService;
-    
+
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "item/{itemID}", method = RequestMethod.GET)
     public Item getItem(@PathVariable String itemID) {
         return itemService.getItem(Integer.parseInt(itemID));
+    }
+
+    @RequestMapping(value = "item/{barcode}/check", method = RequestMethod.GET)
+    public ResponseEntity<Object> checkItemBarcode(@PathVariable String barcode) {
+        if (itemService.checkItemBarcode(barcode)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+        }
     }
 
     @RequestMapping(value = "item", method = RequestMethod.PUT)
@@ -47,14 +56,14 @@ public class ItemController {
         itemService.updateItem(Integer.parseInt(itemID), barcode, description, Integer.parseInt(itemType), userService.getUserID(principal));
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    @RequestMapping(value="item/{itemID}", method=RequestMethod.PATCH)
+
+    @RequestMapping(value = "item/{itemID}", method = RequestMethod.PATCH)
     public ResponseEntity<Object> retireItem(@PathVariable String itemID, Principal principal) {
         itemService.retireItem(Integer.parseInt(itemID), userService.getUserID(principal));
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    @RequestMapping(value = "item/{itemID}", method=RequestMethod.DELETE)
+
+    @RequestMapping(value = "item/{itemID}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteItem(@PathVariable String itemID, Principal principal) {
         itemService.retireItem(Integer.parseInt(itemID), userService.getUserID(principal));
         return new ResponseEntity<>(HttpStatus.OK);

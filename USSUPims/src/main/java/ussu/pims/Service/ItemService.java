@@ -28,6 +28,10 @@ public class ItemService {
         return itemDAO.getItemID(barcode);
     }
     
+    public boolean checkItemBarcode(String barcode) {
+        return itemDAO.checkItemBarcode(barcode);
+    }
+    
     public void addItem(String barcode, String description, int itemType, int userID) {
         itemDAO.addItem(barcode, description, itemType, userID);
     }

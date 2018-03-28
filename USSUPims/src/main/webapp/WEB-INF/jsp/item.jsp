@@ -4,6 +4,7 @@
 <html>
     <head>
         <%@include file="/WEB-INF/jspf/lib.jspf" %>
+        <script src="js/item.js" ></script>
     </head>
     <body>
         <%@include file="/WEB-INF/jspf/nav.jspf" %>
@@ -19,32 +20,73 @@
         <div class="container">
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <h1><small>Item type</small></h1>
+                    <h1><small>Item type details</small></h1>
                     <hr>
-                    <input name="itemTypeId" id =" itemTypeId" class="form-control" value="${item.itemTypeId}" hidden>
-                    <input name ="itemTypeName" id="itemTypeName" class="form-control" value="${item.itemTypeName}" disabled>
+                    <div id="itemTypeIdGroup" hidden>
+                        <input name="itemTypeId" id =" itemTypeId" class="form-control" value="${item.itemTypeId}">
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="itemTypeValue">Value</label>
                     <input name="itemTypeValue" id="itemTypeValue" class="form-control" value="${item.value}" disabled>
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="itemTypeWeight">Weight</label>
                     <input name="itemTypeWeight" id="itemTypeWeight" class="form-control" value="${item.weight}" disabled>
-                    <input name="itemTypeRequiresPat" id="itemTypeRequiresPat" class="form-control" value="${item.requiresPat}" disabled>
-                    <input name=itemTypePatIntervalMonths" id="itemTypePatIntervalMonths" class="form-control" value="${item.patIntervalMonths}" disabled>
+
+                </div>
+                <div class="form-group col-md-3">
+                    <p><strong>PAT Testing</strong></p>
+                    <div class="checkbox">
+                        <label for="itemTypeRequiresPat"><input name="itemTypeRequiresPat" id="itemTypeRequiresPat" type="checkbox" <c:if test="${item.requiresPat=='true'}">checked</c:if> disabled> Required</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="itemTypePatIntervalMonths">PAT Test Interval</label>
+                        <div class="input-group">
+                            <input name=itemTypePatIntervalMonths" id="itemTypePatIntervalMonths" type="tel" class="form-control" value="${item.patIntervalMonths}" disabled>
+                        <span class="input-group-addon">months</span>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <h1><small>Item details</small></h1>
                     <hr>
-                    <input name="createdByUserId" id="createdByUserId" class="form-control" value="${item.createdByUserId}" disabled>
-                    <input name="createdDateTime" id="createdDateTime" class="form-control" value="${item.createdDatetime}" disabled>
-                    <input name="lastChangedByUserId" id="lastChangedByUserId" class="form-control" value="${item.lastChangedByUserId}" disabled>
-                    <input name="lastChangedDateTime" id=lastChangedDateTime" class="form-control" value="${item.lastChangedDateTime}" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="barcode">Barcode</label>
                     <input name="barcode" id="barcode" class="form-control" value="${item.barcode}">
-                    <input name="description" id="description" class="form-control" value="${item.description}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" class="form-control">${item.description}</textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class-form-group col-md-12>
+
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <h1><small>Item history</small></h1>
                     <hr>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 pat-test-history">
+                    <h2 id="pat-test-history-heading"><small>PAT test history</small></h2>
+                </div>
+                <div class="form-group col-md-6 maintenance-history">
+                    <h2 id="maintenance-history-heading"><small>Maintenance history</small></h2>
                 </div>
             </div>
         </div>

@@ -5,38 +5,24 @@
  */
 package ussu.pims.Service;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ussu.pims.DAO.ItemEventDAO;
+import ussu.pims.Model.TestEvent;
+
 /**
  *
  * @author danielroy
  */
+@Service
 public class ItemEventService {
     
-    public void logItemCreation () {
-        
-    }
+    @Autowired
+    private ItemEventDAO itemEventDAO;
     
-    public void logItemTest() {
-        
-    }
-    
-    public void logItemService() {
-        
-    }
-    
-    public void logItemBarcodeChange() {
-        
-    }
-    
-    public void logItemDetailChange() {
-        
-    }
-    
-    public void logItemRetirement() {
-        
-    }
-    
-    public void logItemDeletion() {
-        
+    public List<TestEvent> getTestEvents(int itemId) {
+        return itemEventDAO.getTestEvents(itemId);
     }
     
 }

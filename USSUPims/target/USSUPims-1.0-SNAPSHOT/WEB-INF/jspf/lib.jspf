@@ -8,5 +8,6 @@
 <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
 <link href="webjars/bootstrap-select/1.4.2/bootstrap-select.min.css" rel="stylesheet">
 <link href="webjars/ajax-bootstrap-select/1.4.0/dist/css/ajax-bootstrap-select.css" rel="stylesheet">
+<link href="css/timeline-css.css" rel="stylesheet">
 <link href="css/dashboard-css.css" rel="stylesheet">
 <title>PIMS</title>

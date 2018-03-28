@@ -13,9 +13,11 @@ public class Item {
     
     private int id;
     private int createdByUserId;
+    private String createdByUserFullname;
     private String createdDatetime;
     private String lastChangedDateTime;
     private int lastChangedByUserId;
+    private String lastChangedByUserFullname;
     private String barcode;
     private String description;
     private int itemTypeId;
@@ -25,12 +27,14 @@ public class Item {
     private boolean requiresPat;
     private int patIntervalMonths;
 
-    public Item(int id, int createdByUserId, String createdDatetime, String lastChangedDateTime, int lastChangedByUserId, String barcode, String description, int itemTypeId, String itemTypeName, float value, float weight, boolean requiresPat, int patIntervalMonths) {
+    public Item(int id, int createdByUserId, String createdByUserFullname, String createdDatetime, String lastChangedDateTime, int lastChangedByUserId, String lastChangedByUserFullname, String barcode, String description, int itemTypeId, String itemTypeName, float value, float weight, boolean requiresPat, int patIntervalMonths) {
         this.id = id;
         this.createdByUserId = createdByUserId;
+        this.createdByUserFullname = createdByUserFullname;
         this.createdDatetime = createdDatetime;
         this.lastChangedDateTime = lastChangedDateTime;
         this.lastChangedByUserId = lastChangedByUserId;
+        this.lastChangedByUserFullname = lastChangedByUserFullname;
         this.barcode = barcode;
         this.description = description;
         this.itemTypeId = itemTypeId;
@@ -91,6 +95,14 @@ public class Item {
 
     public int getPatIntervalMonths() {
         return patIntervalMonths;
+    }
+
+    public String getCreatedByUserFullname() {
+        return createdByUserFullname;
+    }
+
+    public String getLastChangedByUserFullname() {
+        return lastChangedByUserFullname;
     }
     
     

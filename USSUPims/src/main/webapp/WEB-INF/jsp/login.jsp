@@ -3,11 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <title>PIMS login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <script type="text/javascript" src="webjars/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <link type="text/css" href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"></link>
+        <%@include file="/WEB-INF/jspf/lib.jspf" %>
         <link type="text/css" href="css/login-css.css" rel="stylesheet"></link>
     </head>
     <body>

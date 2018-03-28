@@ -3,12 +3,12 @@ $(document).ready(function () {
         size: 4
     });
     $('#patTest').parsley({
-    excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], input:hidden"
-});
-$('.bootstrap-select-searchbox').children(['input']).prop("autocomplete", 'off');
-$('.bootstrap-select-searchbox').children(['input']).prop("autocorrect", 'off');
-$('.bootstrap-select-searchbox').children(['input']).prop("autocapitalize", 'off');
-$('.bootstrap-select-searchbox').children(['input']).prop("spellcheck", 'false');
+        excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], input:hidden"
+    });
+    $('.bootstrap-select-searchbox').children(['input']).attr("autocomplete", 'off');
+    $('.bootstrap-select-searchbox').children(['input']).attr("autocorrect", 'off');
+    $('.bootstrap-select-searchbox').children(['input']).attr("autocapitalize", 'off');
+    $('.bootstrap-select-searchbox').children(['input']).attr("spellcheck", 'false');
     $('.bootstrap-select-searchbox').children(['input']).keyup(function (e) {
         var code = (e.keyCode || e.which);
         if (code == 37 || code == 38 || code == 39 || code == 40) {
@@ -62,26 +62,26 @@ function enableDisableTestMeasurements() {
 }
 
 function actionTest(testOperator, testOperatorName, barcode, earthResistanceOhms, insulationResistanceMOhms, includeTestMeasurements) {
-            if (includeTestMeasurements === true) {
-            $.ajax({
-                url: 'item/' + barcode + '/testmeasurements?earthResistanceOhms=' + earthResistanceOhms + '&insulationResistanceMOhms=' + insulationResistanceMOhms + '&testOperator=' + testOperator,
-                type: "PUT",
-                success: function (response) {
-                    addCompletedTestRow(barcode, testOperatorName);
-                    resetScreen();
-                }
-            });
-        } else {
-            $.ajax({
-                url: 'item/' + barcode + '/test?testOperator=' + testOperator,
-                type: "PUT",
-                success: function (response) {
-                    addCompletedTestRow(barcode, testOperatorName);
-                    resetScreen();
-                }
-            });
-        }
-        $('#noTestAlert').hide();
+    if (includeTestMeasurements === true) {
+        $.ajax({
+            url: 'item/' + barcode + '/testmeasurements?earthResistanceOhms=' + earthResistanceOhms + '&insulationResistanceMOhms=' + insulationResistanceMOhms + '&testOperator=' + testOperator,
+            type: "PUT",
+            success: function (response) {
+                addCompletedTestRow(barcode, testOperatorName);
+                resetScreen();
+            }
+        });
+    } else {
+        $.ajax({
+            url: 'item/' + barcode + '/test?testOperator=' + testOperator,
+            type: "PUT",
+            success: function (response) {
+                addCompletedTestRow(barcode, testOperatorName);
+                resetScreen();
+            }
+        });
+    }
+    $('#noTestAlert').hide();
 }
 
 function addCompletedTestRow(barcode, testOperator) {

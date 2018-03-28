@@ -43,4 +43,5 @@ ussu/pims/Config/RootConfig.class
 ussu/pims/Model/Event.class
 ussu/pims/Config/ErrorHandler$1.class
 ussu/pims/DAO/UserDAO$1.class
+ussu/pims/DAO/TestDAO$2.class
 ussu/pims/DAO/JobDAO.class

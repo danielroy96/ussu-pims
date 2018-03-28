@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ussu.pims.Model.Item;
 import ussu.pims.Model.User;
+import ussu.pims.Service.ItemService;
 import ussu.pims.Service.UserService;
 
 /**
@@ -25,6 +27,9 @@ public class DashboardController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private ItemService itemService;
 
     /**
      * Maps requests for /index to the index view
@@ -85,6 +90,13 @@ public class DashboardController {
             model.addAttribute("userFullName", user.getTitle() + " " + user.getForename() + " " + user.getSurname());
         }
         return "user-details";
+    }
+    
+    @RequestMapping(value="/item", method=RequestMethod.GET)
+    protected String itemUpdate(@RequestParam String itemBarcode, Model model) throws Exception {
+        Item item = itemService.getItem(itemBarcode);
+        model.addAttribute(item);
+        return "item";
     }
 
 //    @RequestMapping(value = "/user/{userID}", method = RequestMethod.GET)

@@ -21,8 +21,8 @@ public class ItemService {
     @Autowired
     private ItemDAO itemDAO;
     
-    public Item getItem(int itemID) {
-        return null;
+    public Item getItem(String itemBarcode) {
+        return itemDAO.getItem(itemBarcode);
     }
     
     public int getItemId(String barcode) {

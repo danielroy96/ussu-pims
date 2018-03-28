@@ -3,36 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
-        <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="js/main.js" ></script>
-        <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/dashboard-css.css" rel="stylesheet">
+        <%@include file="/WEB-INF/jspf/lib.jspf" %>
+        <script src="js/main.js"></script>
         <title>PIMS</title>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/pims/index">PIMS - Surrey Stage Crew</a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
-                    <ul class="nav navbar-nav navbar-form navbar-right">
-                        <li>
-                            <button onclick="window.location = 'logout'" class="btn btn-warning logout-button">Log out</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <%@include file="/WEB-INF/jspf/nav.jspf" %>
         <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

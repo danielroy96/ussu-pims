@@ -8,6 +8,15 @@ and open the template in the editor.
     Author     : danielroy
 */
 
+@font-face {
+    font-family: "Open Sans";
+    src: url(../font/OpenSans-Regular.ttf);
+}
+
+body {
+    font-family: "Open Sans";
+}
+
 img {
     padding-right: 1em;
 }

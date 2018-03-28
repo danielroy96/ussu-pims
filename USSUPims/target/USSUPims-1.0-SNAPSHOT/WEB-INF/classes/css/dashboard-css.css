@@ -1,5 +1,14 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url(../font/OpenSans-Regular.ttf);
+}
+
 .welcome-bar {
     padding-top:70px;
+}
+
+body {
+    font-family: "Open Sans";
 }
 
 /*

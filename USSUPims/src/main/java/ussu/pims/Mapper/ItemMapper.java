@@ -21,9 +21,11 @@ public class ItemMapper implements RowMapper<Item> {
         return new Item (
                 resultSet.getInt("id"),
                 resultSet.getInt("created_by_user_id"),
+                resultSet.getString("created_by_user_fullname"),
                 resultSet.getString("created_datetime"),
                 resultSet.getString("last_changed_datetime"),
                 resultSet.getInt("last_changed_by_user_id"),
+                resultSet.getString("last_changed_by_user_fullname"),
                 resultSet.getString("barcode"),
                 resultSet.getString("description"),
                 resultSet.getInt("item_type_id"),

@@ -42,15 +42,17 @@ public class ItemDAO {
         System.out.println(SQL);
         return jdbcTemplate.queryForObject(SQL, new Object[]{barcode}, Integer.class);
     }
-    
-    public List<Item> quickSearch(String searchTerm) {
+
+    public Item getItem(String barcode) {
         String SQL = ""
                 + "SELECT"
                 + "  i.id id"
                 + ", i.created_by_user_id created_by_user_id"
-                + ", i.created_datetime created_datetime"
-                + ", idce.start_datetime last_changed_datetime"
+                + ", CONCAT(udcc.title, ' ', udcc.forename, ' ', udcc.surname) created_by_user_fullname "
+                + ", DATE_FORMAT(i.created_datetime, '%H:%i %d/%m/%Y') created_datetime"
+                + ", DATE_FORMAT(idce.start_datetime, '%H:%i %d/%m/%Y') last_changed_datetime"
                 + ", idce.last_changed_by_user_id last_changed_by_user_id"
+                + ", CONCAT(udcl.title, ' ', udcl.forename, ' ', udcl.surname) last_changed_by_user_fullname"
                 + ", idce.barcode barcode"
                 + ", idce.description description"
                 + ", it.id item_type_id"
@@ -62,6 +64,35 @@ public class ItemDAO {
                 + "FROM pims.items i "
                 + "JOIN pims.item_details_current_extant idce ON i.id = idce.item_id "
                 + "JOIN pims.item_types it ON idce.item_type = it.id "
+                + "JOIN pims.user_details_current udcc ON udcc.user_id = i.created_by_user_id "
+                + "JOIN pims.user_details_current udcl ON udcl.user_id = idce.last_changed_by_user_id "
+                + "WHERE idce.barcode = ?";
+        return jdbcTemplate.query(SQL, new ItemMapper(), barcode).get(0);
+    }
+
+    public List<Item> quickSearch(String searchTerm) {
+        String SQL = ""
+                + "SELECT"
+                + "  i.id id"
+                + ", i.created_by_user_id created_by_user_id"
+                + ", CONCAT(udcc.title, ' ', udcc.forename, ' ', udcc.surname) created_by_user_fullname "
+                + ", DATE_FORMAT(i.created_datetime, '%H:%i %d/%m/%Y') created_datetime"
+                + ", DATE_FORMAT(idce.start_datetime, '%H:%i %d/%m/%Y') last_changed_datetime"
+                + ", idce.last_changed_by_user_id last_changed_by_user_id"
+                + ", CONCAT(udcl.title, ' ', udcl.forename, ' ', udcl.surname) last_changed_by_user_fullname"
+                + ", idce.barcode barcode"
+                + ", idce.description description"
+                + ", it.id item_type_id"
+                + ", it.name item_type_name"
+                + ", it.value value"
+                + ", it.weight weight"
+                + ", it.requires_pat requires_pat"
+                + ", it.pat_interval_months pat_interval_months "
+                + "FROM pims.items i "
+                + "JOIN pims.item_details_current_extant idce ON i.id = idce.item_id "
+                + "JOIN pims.item_types it ON idce.item_type = it.id "
+                + "JOIN pims.user_details_current udcc ON udcc.user_id = i.created_by_user_id "
+                + "JOIN pims.user_details_current udcl ON udcl.user_id = idce.last_changed_by_user_id "
                 + "WHERE UPPER(CONCAT(it.name, idce.barcode)) LIKE REPLACE(UPPER(CONCAT('%', ?, '%')), ' ', '%')";
         return jdbcTemplate.query(SQL, new ItemMapper(), searchTerm);
     }

@@ -32,10 +32,10 @@ public class ItemController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "item/{itemID}", method = RequestMethod.GET)
-    public Item getItem(@PathVariable String itemID) {
-        return itemService.getItem(Integer.parseInt(itemID));
-    }
+//    @RequestMapping(value = "item/{itemID}", method = RequestMethod.GET)
+//    public Item getItem(@PathVariable String itemID) {
+//        return itemService.getItem(Integer.parseInt(itemID));
+//    }
 
     @RequestMapping(value = "item/{barcode}/check", method = RequestMethod.GET)
     public ResponseEntity<Object> checkItemBarcode(@PathVariable String barcode) {

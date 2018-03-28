@@ -1,11 +1,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/parsleyjs/2.7.2/parsley.min.js"></script>
 <script src="webjars/bootstrap-select/1.4.2/bootstrap-select.min.js"></script>
 <script src="webjars/ajax-bootstrap-select/1.4.0/dist/js/ajax-bootstrap-select.js"></script>
-<link href="webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
 <link href="webjars/bootstrap-select/1.4.2/bootstrap-select.min.css" rel="stylesheet">
 <link href="webjars/ajax-bootstrap-select/1.4.0/dist/css/ajax-bootstrap-select.css" rel="stylesheet">
 <link href="css/dashboard-css.css" rel="stylesheet">

@@ -134,5 +134,6 @@
                 </div>
             </div>
         </c:if>
+        <%@include file="/WEB-INF/jspf/foot.jspf" %>
     </body>
 </html>

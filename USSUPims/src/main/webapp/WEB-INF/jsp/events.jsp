@@ -14,5 +14,6 @@
             </ol>
             <h2>Events and hires</h2>
         </div>
+        <%@include file="/WEB-INF/jspf/foot.jspf" %>
     </body>
 </html>

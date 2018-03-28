@@ -151,10 +151,11 @@
                         <c:if test="${empty user.id}"><button type="button" onclick="createUser(); return false;" class="btn btn-primary">Create user</button></c:if>
                         <c:if test="${not empty user.id}"><button type="button" onclick="updateUser(); return false;" class="btn btn-primary">Update user</button></c:if>
                         <c:if test="${not empty user.id}"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete user</button></c:if>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>         
+    <%@include file="/WEB-INF/jspf/foot.jspf" %>
 </body>
 </html>

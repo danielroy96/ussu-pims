@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-                <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/pims/index">PIMS - Surrey Stage Crew</a>
@@ -24,19 +24,20 @@
                     </button>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
-                        <ul class="nav navbar-nav navbar-form navbar-right">
-                            <li>
-                                <button onclick="window.location='logout'" class="btn btn-warning logout-button">Log out</button>
-                            </li>
-                        </ul>
+                    <ul class="nav navbar-nav navbar-form navbar-right">
+                        <li>
+                            <button onclick="window.location = 'logout'" class="btn btn-warning logout-button">Log out</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
-                <div class="container welcome-bar">
+        <div class="container welcome-bar">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="#"></a></li>
                 <li class="breadcrumb-item"><a href="£">Test</a></li>
             </ol>
         </div>
+        <%@include file="/WEB-INF/jspf/foot.jspf" %>
     </body>
 </html>

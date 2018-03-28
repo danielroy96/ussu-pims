@@ -5,10 +5,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <script src="js/search.js" ></script>
         <script src="webjars/jquery/3.2.1/jquery.min.js"></script>
         <script src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="webjars/bootstrap-select/1.4.2/bootstrap-select.min.js"></script>
+        <script src="webjars/ajax-bootstrap-select/1.4.0/dist/js/ajax-bootstrap-select.js"></script>
+        <script src="js/search.js" ></script>
         <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="webjars/bootstrap-select/1.4.2/bootstrap-select.min.css" rel="stylesheet">
+        <link href="webjars/ajax-bootstrap-select/1.4.0/dist/css/ajax-bootstrap-select.css" rel="stylesheet">
         <link href="css/dashboard-css.css" rel="stylesheet">
         <link href="css/search-css.css" rel="stylesheet">
         <title>PIMS</title>
@@ -40,23 +44,30 @@
                 <li class="breadcrumb-item">Search</li>
             </ol>
             <h2>Search for items</h2>
-            <h1><small>Scan a barcode</small></h1>
+            <h1><small>Quick search</small></h1>
             <hr>
             <form id="barcodeSearch">
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="barcode">Barcode</label>
-                        <input id="barcode" class="form-control" type="tel" autofocus="">
+                    <div class="form-group col-md-6">
+                        <select id="itemSearch" class="selectpicker form-control" data-live-search="true">
+
+                        </select>
+                        <p class="form-text text-muted">Start typing to find an item</p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button id="btnSearch" class="btn btn-primary btn-fullwidth" type="button">Select item</button>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <button id="btnSearch" onclick="barcodeSearch(); return false;" class="btn btn-primary btn-fullwidth" type="button">Search</button>
-                    </div>
+
                 </div>
             </form>
-            <h1><small>Advanced search</small></h1>
-            <hr>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <h1><small>Advanced search</small></h1>
+                    <hr>
+                </div>
+            </div>
             <form id="advancedSearch">
                 <div class="form-row">
                     <div class="form-group col-md-12">

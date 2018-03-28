@@ -8,6 +8,7 @@ package ussu.pims.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,6 +17,8 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ussu.pims.Mapper.ItemMapper;
+import ussu.pims.Model.Item;
 
 /**
  *
@@ -38,6 +41,29 @@ public class ItemDAO {
                 + "WHERE idc.barcode = ?";
         System.out.println(SQL);
         return jdbcTemplate.queryForObject(SQL, new Object[]{barcode}, Integer.class);
+    }
+    
+    public List<Item> quickSearch(String searchTerm) {
+        String SQL = ""
+                + "SELECT"
+                + "  i.id id"
+                + ", i.created_by_user_id created_by_user_id"
+                + ", i.created_datetime created_datetime"
+                + ", idce.start_datetime last_changed_datetime"
+                + ", idce.last_changed_by_user_id last_changed_by_user_id"
+                + ", idce.barcode barcode"
+                + ", idce.description description"
+                + ", it.id item_type_id"
+                + ", it.name item_type_name"
+                + ", it.value value"
+                + ", it.weight weight"
+                + ", it.requires_pat requires_pat"
+                + ", it.pat_interval_months pat_interval_months "
+                + "FROM pims.items i "
+                + "JOIN pims.item_details_current_extant idce ON i.id = idce.item_id "
+                + "JOIN pims.item_types it ON idce.item_type = it.id "
+                + "WHERE UPPER(CONCAT(it.name, idce.barcode)) LIKE REPLACE(UPPER(CONCAT('%', ?, '%')), ' ', '%')";
+        return jdbcTemplate.query(SQL, new ItemMapper(), searchTerm);
     }
 
     public Number addItem(String barcode, String description, int itemType, final int userID) {

@@ -5,12 +5,19 @@ $(document).ready(function () {
     $('#patTest').parsley({
     excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], input:hidden"
 });
+$('.bootstrap-select-searchbox').children(['input']).prop("autocomplete", 'off');
+$('.bootstrap-select-searchbox').children(['input']).prop("autocorrect", 'off');
+$('.bootstrap-select-searchbox').children(['input']).prop("autocapitalize", 'off');
+$('.bootstrap-select-searchbox').children(['input']).prop("spellcheck", 'false');
     $('.bootstrap-select-searchbox').children(['input']).keyup(function (e) {
         var code = (e.keyCode || e.which);
         if (code == 37 || code == 38 || code == 39 || code == 40) {
             return;
         }
         var searchTerm = $('.bootstrap-select-searchbox').children(['input']).val();
+        if (searchTerm.length < 4) {
+            return;
+        }
         $.ajax({
             url: 'user/quicksearch?searchTerm=' + searchTerm,
             type: "GET",

@@ -5,6 +5,7 @@
  */
 package ussu.pims.Service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ussu.pims.DAO.ItemDAO;
@@ -26,6 +27,10 @@ public class ItemService {
     
     public int getItemId(String barcode) {
         return itemDAO.getItemID(barcode);
+    }
+    
+    public List<Item> quickSearch(String searchTerm) {
+        return itemDAO.quickSearch(searchTerm);
     }
     
     public boolean checkItemBarcode(String barcode) {

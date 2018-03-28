@@ -6,6 +6,7 @@
 package ussu.pims.Controller;
 
 import java.security.Principal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,11 @@ public class ItemController {
         } else {
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
+    }
+    
+    @RequestMapping(value="item/search", method = RequestMethod.GET)
+    public List<Item> quickSearch(@RequestParam String searchTerm) {
+        return itemService.quickSearch(searchTerm);
     }
 
     @RequestMapping(value = "item", method = RequestMethod.PUT)

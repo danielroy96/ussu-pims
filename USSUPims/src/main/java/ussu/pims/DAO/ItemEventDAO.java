@@ -52,7 +52,7 @@ public class ItemEventDAO {
         return jdbcTemplate.query(SQL, new TestEventMapper(), itemID);
     }
 
-    public Number logEvent(final String mnem, final String displayText, final int itemID, final int userID, final Integer testID, Integer maintenanceID) {
+    public Number logEvent(final String mnem, final String displayText, final int itemID, final int userID, final Integer testID, final Integer maintenanceID) {
         final String SQL = ""
                 + "INSERT INTO pims.item_events ("
                 + "  mnem"
@@ -61,11 +61,13 @@ public class ItemEventDAO {
                 + ", event_datetime"
                 + ", event_user_id"
                 + ", test_id"
+                + ", maintenance_id"
                 + ") VALUES ("
                 + "  ?"
                 + ", ?"
                 + ", ?"
                 + ", NOW()"
+                + ", ?"
                 + ", ?"
                 + ", ?"
                 + ")";
@@ -83,6 +85,11 @@ public class ItemEventDAO {
                     preparedStatement.setInt(5, testID);
                 } else {
                     preparedStatement.setNull(5, Types.INTEGER);
+                }
+                if (maintenanceID != null) {
+                    preparedStatement.setInt(6, maintenanceID);
+                } else {
+                    preparedStatement.setNull(6, Types.INTEGER);
                 }
                 return preparedStatement;
             }

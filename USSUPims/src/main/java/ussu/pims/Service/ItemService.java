@@ -21,6 +21,9 @@ public class ItemService {
     @Autowired
     private ItemDAO itemDAO;
     
+    @Autowired
+    private ItemEventService itemEventService;
+    
     public Item getItem(String itemBarcode) {
         return itemDAO.getItem(itemBarcode);
     }
@@ -37,8 +40,10 @@ public class ItemService {
         return itemDAO.checkItemBarcode(barcode);
     }
     
-    public void addItem(String barcode, String description, int itemType, int userID) {
-        itemDAO.addItem(barcode, description, itemType, userID);
+    public String addItem(String barcode, String description, int itemType, int userID) {
+        int itemID = itemDAO.addItem(barcode, description, itemType, userID);
+        itemEventService.logEvent("CREATE", "Item created", itemID, userID, null, null);
+        return barcode;
     }
     
     public void updateItem(int itemID, String barcode, String description, int itemType, int userID) {

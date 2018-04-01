@@ -46,20 +46,21 @@ function test() {
             url: 'item/' + barcode + '/check',
             type: "GET",
             success: function (response) {
-                $.ajax({
-                    url: 'item/' + barcode + '/test?earthResistanceOhms=' + earthResistanceOhms + '&insulationResistanceMOhms=' + insulationResistanceMOhms + '&testOperator=' + testOperator,
-                    type: "PUT",
-                    success: function (response) {
-                        addCompletedTestRow(barcode, testOperatorName);
-                        resetScreen();
-                    }
-                });
-                $('#itemBarcode').removeClass('parsley-error');
-                $('#noTestAlert').hide();
+                if (response === "barcode_in_use") {
+                    $.ajax({
+                        url: 'item/' + barcode + '/test?earthResistanceOhms=' + earthResistanceOhms + '&insulationResistanceMOhms=' + insulationResistanceMOhms + '&testOperator=' + testOperator,
+                        type: "PUT",
+                        success: function (response) {
+                            addCompletedTestRow(barcode, testOperatorName);
+                            resetScreen();
+                        }
+                    });
+                    $('#itemBarcode').removeClass('parsley-error');
+                    $('#noTestAlert').hide();
+                } else {
+                    $('#itemBarcode').addClass('parsley-error');
+                }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $('#itemBarcode').addClass('parsley-error');
-            }
         });
 
     }

@@ -27,6 +27,7 @@ $(document).ready(function () {
         if (searchTerm.length < 4) {
             return;
         }
+        $('.bootstrap-select').removeClass('parsley-error');
         $.ajax({
             url: 'item/type/search?searchTerm=' + searchTerm,
             type: "GET",
@@ -81,16 +82,33 @@ function enableDisablePATInterval() {
 
 function addItem() {
     $('#newItem').parsley().validate();
-    if ($('#newItem').parsley().isValid()) {
-        var itemTypeName = encodeURIComponent($('#itemTypeName').val());
-        var description = encodeURIComponent($('#description').val() || null);
-        var itemBarcode = encodeURIComponent($('#itemBarcode').val());
+    var itemBarcode = encodeURIComponent($('#itemBarcode').val());
+    var itemTypeName = encodeURIComponent($('#itemTypeName').val());
+    if (itemTypeName === "null") {
+        $('.bootstrap-select').addClass('parsley-error');
     }
     $.ajax({
-        url: 'item?itemType=' + itemTypeName + '&description=' + description + '&barcode=' + itemBarcode,
-        type: "PUT",
-        success: function(response){
-            alert("item added");
+        url: 'item/' + itemBarcode + '/check',
+        type: "GET",
+        success: function (response) {
+            if (response === "barcode_in_use") {
+                $('#itemBarcode').addClass('parsley-error');
+                return;
+            } else {
+                $('#itemBarcode').removeClass('parsley-error');
+            }
         }
     });
+    
+    if ($('#newItem').parsley().isValid() && $('.parsley-error').length === 0) {
+        var description = encodeURIComponent($('#description').val() || null);
+        $.ajax({
+            url: 'item?itemType=' + itemTypeName + '&description=' + description + '&barcode=' + itemBarcode,
+            type: "PUT",
+            success: function (response) {
+                window.location.replace('item?itemBarcode=' + response);
+            }
+        });
+    }
+
 }

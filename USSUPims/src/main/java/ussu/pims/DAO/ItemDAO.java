@@ -8,6 +8,7 @@ package ussu.pims.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +98,7 @@ public class ItemDAO {
         return jdbcTemplate.query(SQL, new ItemMapper(), searchTerm);
     }
 
-    public Number addItem(String barcode, String description, int itemType, final int userID) {
+    public int addItem(final String barcode, final String description, final int itemType, final int userID) {
         final String createItemRowSQL = ""
                 + "INSERT INTO pims.items ("
                 + "  created_by_user_id"
@@ -106,7 +107,7 @@ public class ItemDAO {
                 + "  ?"
                 + ", NOW()"
                 + ")";
-        String createItemDetailRowSQL = ""
+        final String createItemDetailRowSQL = ""
                 + "INSERT INTO pims.item_details ("
                 + "  item_id"
                 + ", start_datetime"
@@ -126,7 +127,7 @@ public class ItemDAO {
                 + ", ?"
                 + ", ?"
                 + ")";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+        KeyHolder itemRowKeyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 new PreparedStatementCreator() {
             @Override
@@ -135,10 +136,29 @@ public class ItemDAO {
                 preparedStatement.setInt(1, userID);
                 return preparedStatement;
             }
-        }, keyHolder
+        }, itemRowKeyHolder
         );
-        jdbcTemplate.update(createItemDetailRowSQL, keyHolder.getKey(), userID, barcode, description, itemType);
-        return keyHolder.getKey();
+        final int itemID = itemRowKeyHolder.getKey().intValue();
+        KeyHolder detailRowKeyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(
+                new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement preparedStatement = connection.prepareStatement(createItemDetailRowSQL, new String[]{"id"});
+                preparedStatement.setInt(1, itemID);
+                preparedStatement.setInt(2, userID);
+                preparedStatement.setString(3, barcode);
+                if (description != null) {
+                    preparedStatement.setString(4, description);
+                } else {
+                    preparedStatement.setNull(4, Types.VARCHAR);
+                }
+                preparedStatement.setInt(5, itemType);
+                return preparedStatement;
+            }
+        }, detailRowKeyHolder
+        );
+        return itemID;
     }
 
     public boolean checkItemBarcode(String barcode) {

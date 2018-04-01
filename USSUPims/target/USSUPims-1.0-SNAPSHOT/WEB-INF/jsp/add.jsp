@@ -76,7 +76,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="itemTypeName">Item Type</label>
-                        <select id="itemTypeName" class="selectpicker form-control" data-live-search="true" required>
+                        <select id="itemTypeName" class="selectpicker form-control" data-live-search="true">
                         </select>
                         <p class="form-text text-muted">Start typing to find an item type</p>
                         <a data-toggle="modal" data-target="#itemTypeAddModal">Add a new item type...</a>
@@ -85,13 +85,14 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="description">Description</label>
-                        <textarea id="description" class="form-control"></textarea>
+                        <textarea id="description" class="form-control" placeholder="Enter a description or notes about this item"></textarea>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="itemBarcode">Item Barcode</label>
                         <input id="itemBarcode" class="form-control" type="tel" placeholder="Scan barcode" required>
+                        <p class="text-muted">This barcode can't be in use by another item on PIMS</p>
                     </div>
                     <div class="form-group col-md-6">
 

@@ -38,11 +38,11 @@ public class ItemController {
 //    }
 
     @RequestMapping(value = "item/{barcode}/check", method = RequestMethod.GET)
-    public ResponseEntity<Object> checkItemBarcode(@PathVariable String barcode) {
+    public String checkItemBarcodeExists(@PathVariable String barcode) {
         if (itemService.checkItemBarcode(barcode)) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return "barcode_in_use";
         } else {
-            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+            return "barcode_not_in_use";
         }
     }
     
@@ -52,9 +52,12 @@ public class ItemController {
     }
 
     @RequestMapping(value = "item", method = RequestMethod.PUT)
-    public ResponseEntity<Object> addItem(@RequestParam String barcode, @RequestParam String description, @RequestParam String itemType, Principal principal) {
-        itemService.addItem(barcode, description, Integer.parseInt(itemType), userService.getUserID(principal));
-        return new ResponseEntity<>(HttpStatus.OK);
+    public String addItem(@RequestParam String barcode, @RequestParam String description, @RequestParam String itemType, Principal principal) {
+        String descriptionLocal = null;
+        if (!"null".equals(description)) {
+            descriptionLocal = description;
+        }
+        return itemService.addItem(barcode, descriptionLocal, Integer.parseInt(itemType), userService.getUserID(principal));
     }
 
     @RequestMapping(value = "item/{itemID}", method = RequestMethod.PUT)

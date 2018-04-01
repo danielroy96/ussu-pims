@@ -5,9 +5,11 @@
  */
 package ussu.pims.Service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ussu.pims.DAO.ItemTypeDAO;
+import ussu.pims.Model.ItemType;
 
 /**
  *
@@ -19,8 +21,12 @@ public class ItemTypeService {
     @Autowired
     private ItemTypeDAO itemTypeDAO;
     
-    public void addItemType(String name, float value, float weight, String requiresPAT, int PATIntervalMonths, int userID) {
-        itemTypeDAO.addItemType(name, value, weight, requiresPAT, PATIntervalMonths, userID);
+    public List<ItemType> quickSearch(String searchTerm) {
+        return itemTypeDAO.quickSearch(searchTerm);
+    }
+    
+    public ItemType addItemType(String name, Float value, Float weight, String requiresPAT, Integer PATIntervalMonths, int userID) {
+        return itemTypeDAO.addItemType(name, value, weight, requiresPAT, PATIntervalMonths, userID);
     }
     
     public void updateItemType(int itemTypeID, String name, float value, float weight, String requiresPAT, int PATIntervalMonths, int userID) {

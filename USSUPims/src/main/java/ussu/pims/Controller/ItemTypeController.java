@@ -6,6 +6,7 @@
 package ussu.pims.Controller;
 
 import java.security.Principal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,10 +39,26 @@ public class ItemTypeController {
         return null;
     }
     
+    @RequestMapping(value="item/type/search", method=RequestMethod.GET)
+    public List<ItemType> quickSearch (@RequestParam String searchTerm) {
+        return itemTypeService.quickSearch(searchTerm);
+    }
+    
     @RequestMapping(value="item-type", method=RequestMethod.PUT)
-    public ResponseEntity<Object> addItemType (@RequestParam String name, @RequestParam String value, @RequestParam String weight, @RequestParam String requiresPAT, @RequestParam String PATIntervalMonths, Principal principal) {
-        itemTypeService.addItemType(name, Float.parseFloat(value), Float.parseFloat(weight), requiresPAT, Integer.parseInt(PATIntervalMonths), userService.getUserID(principal));
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ItemType addItemType (@RequestParam String name, @RequestParam String value, @RequestParam String weight, @RequestParam String requiresPAT, @RequestParam String PATIntervalMonths, Principal principal) {
+        Float valueLocal = null;
+        if (!"null".equals(value)) {
+            valueLocal = Float.parseFloat(value);
+        }
+        Float weightLocal = null;
+        if (!"null".equals(weight)) {
+            weightLocal = Float.parseFloat(weight);
+        }
+        Integer PATIntervalMonthsLocal = null;
+        if (!"null".equals(PATIntervalMonths)) {
+            PATIntervalMonthsLocal = Integer.parseInt(PATIntervalMonths);
+        }
+        return itemTypeService.addItemType(name, valueLocal, weightLocal, requiresPAT, PATIntervalMonthsLocal, userService.getUserID(principal));
     }
     
     @RequestMapping(value="item-type/{itemTypeID}", method=RequestMethod.PUT)

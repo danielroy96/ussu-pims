@@ -38,27 +38,20 @@
         <div class="container">
             <h1><small>PIMS Dashboard stats</small></h1>
             <hr>
-            <h4>Current Test Stats <small> Equipment PAT testing progress</small></h4>
-            <div class="progress">
-                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:40%">
-                    Tested
+            <h4>Recent PAT testing <small> Number of items PAT tested</small></h4>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <canvas id="patStatsChart"></canvas>
+                    <div class="text-muted text-center">Last week</div>
                 </div>
-                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width:35%">
-                    Expiring
+                <div class="form-group col-md-4">
+                    <canvas id=""></canvas>
+                    <div class="text-muted text-center">Last month</div>
                 </div>
-                <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" style="width:25%">
-                    Expired
+                <div class="form-group col-md-4">
+                    <canvas id=""></canvas>
+                    <div class="text-muted text-center">Last year</div>
                 </div>
-            </div>
-            <h4>Stock location <small> Equipment out on jobs</small></h4>
-            <div class="progress">
-                <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" style="width:80%">
-                    In
-                </div>
-                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:20%">
-                    Out
-                </div>
-
             </div>
         </div>
         <div class="container">

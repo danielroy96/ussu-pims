@@ -161,6 +161,10 @@ public class User implements UserDetails {
     public void setLast_changed_by_user(String last_changed_by_user) {
         this.last_changed_by_user = last_changed_by_user;
     }
+    
+    public String getUserFullname() {
+        return title + " " + forename + " " + surname;
+    }
 
     /**
      *

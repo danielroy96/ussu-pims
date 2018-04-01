@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ussu.pims.DAO.ItemEventDAO;
+import ussu.pims.Model.MaintenanceEvent;
 import ussu.pims.Model.TestEvent;
 
 /**
@@ -23,6 +24,10 @@ public class ItemEventService {
     
     public List<TestEvent> getTestEvents(int itemId) {
         return itemEventDAO.getTestEvents(itemId);
+    }
+    
+    public List<MaintenanceEvent> getMaintenanceEvents(int itemId) {
+        return null;
     }
     
 }

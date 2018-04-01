@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ussu.pims.Model.Event;
+import ussu.pims.Model.MaintenanceEvent;
 import ussu.pims.Model.TestEvent;
 import ussu.pims.Service.ItemEventService;
 import ussu.pims.Service.ItemService;
@@ -35,8 +35,8 @@ public class ItemEventController {
     }
     
     @RequestMapping(value="/item/{itemBarcode}/event/maintenance", method=RequestMethod.GET)
-    public List<Event> getMaintenanceEvents (@PathVariable String itemBarcode) {
-        return null;
+    public List<MaintenanceEvent> getMaintenanceEvents (@PathVariable String itemBarcode) {
+        return itemEventService.getMaintenanceEvents(itemService.getItemId(itemBarcode));
     }
     
 }

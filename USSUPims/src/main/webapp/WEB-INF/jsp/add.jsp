@@ -12,53 +12,55 @@
         <div class="modal fade" id="itemTypeAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form id="addItemType" onsubmit="addItemType(); return false;" data-parsley-validate>
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add a new item type</h5>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add a new item type</h5>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <form id="addItemType" data-parsley-validate>
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label for="itemTypeName">Name</label>
-                                        <input name="itemTypeName" id="itemTypeName" class="form-control">
+                                        <label for="newItemTypeName">Name</label>
+                                        <input name="newItemTypeName" id="newItemTypeName" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <label for="itemTypeValue">Value</label>
-                                        <input name="itemTypeValue" id="itemTypeValue" class="form-control">
+                                        <label for="newItemTypeValue">Value</label>
+                                        <input name="newItemTypeValue" id="newItemTypeValue" class="form-control">
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label for="itemTypeWeight">Weight</label>
-                                        <input name="itemTypeWeight" id="itemTypeWeight" class="form-control">
+                                        <label for="newItemTypeWeight">Weight</label>
+                                        <input name="newItemTypeWeight" id="newItemTypeWeight" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <label for="PATrequired">PAT Testing</label>
+                                        <label for="newItemTypePATrequired">PAT Testing</label>
                                         <div class="checkbox">
-                                            <label for="PATrequired"><input id="PATrequired" type="checkbox" onchange="enableDisablePATInterval();" checked>Required</label>
+                                            <label for="newItemTypePATrequired"><input id="newItemTypePATrequired" type="checkbox" onchange="enableDisablePATInterval();" checked>Required</label>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6" id="PATIntervalGroup">
-                                        <label for="PATinterval">PAT Test Interval</label>
+                                        <label for="newItemTypePATinterval">PAT Test Interval</label>
                                         <div class="input-group">
-                                            <input id="PATinterval" type="tel" class="form-control">
+                                            <input id="newItemTypePATinterval" type="tel" class="form-control">
                                             <span class="input-group-addon">months</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <div class="form-row">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Add item type</button>
-                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-row">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" onclick="addItemType();">Add item type</button>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -73,8 +75,10 @@
             <form id="newItem">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="name">Item type</label>
-                        <input id="name" class="form-control" type="text">
+                        <label for="itemTypeName">Item Type</label>
+                        <select id="itemTypeName" class="selectpicker form-control" data-live-search="true">
+                        </select>
+                        <p class="form-text text-muted">Start typing to find an item type</p>
                         <a data-toggle="modal" data-target="#itemTypeAddModal">Add a new item type...</a>
                     </div>
                 </div>

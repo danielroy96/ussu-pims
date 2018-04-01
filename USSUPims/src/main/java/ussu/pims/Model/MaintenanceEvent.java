@@ -11,10 +11,15 @@ package ussu.pims.Model;
  */
 public class MaintenanceEvent extends Event{
     
+    private String description;
     
-    
-    public MaintenanceEvent(int id, String mnem, String displayText, String eventDatetime, String eventUserFullname) {
+    public MaintenanceEvent(int id, String mnem, String displayText, String eventDatetime, String eventUserFullname, String description) {
         super(id, mnem, displayText, eventDatetime, eventUserFullname);
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
     
 }

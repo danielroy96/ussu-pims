@@ -17,7 +17,9 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ussu.pims.Mapper.MaintenanceEventMapper;
 import ussu.pims.Mapper.TestEventMapper;
+import ussu.pims.Model.MaintenanceEvent;
 import ussu.pims.Model.TestEvent;
 
 /**
@@ -50,6 +52,24 @@ public class ItemEventDAO {
                 + "AND ie.item_id = ? "
                 + "ORDER BY ie.id DESC";
         return jdbcTemplate.query(SQL, new TestEventMapper(), itemID);
+    }
+    
+    public List<MaintenanceEvent> getMaintenanceEvents(int itemID) {
+        String SQL = ""
+                + "SELECT"
+                + "  ie.id"
+                + ", ie.mnem"
+                + ", ie.display_text"
+                + ", DATE_FORMAT(ie.event_datetime, '%H:%i %d/%m/%Y') event_datetime"
+                + ", CONCAT(udc.title, ' ', udc.forename, ' ', udc.surname) event_user_fullname"
+                + ", m.description "
+                + "FROM pims.item_events ie "
+                + "JOIN pims.user_details_current udc ON udc.user_id = ie.event_user_id "
+                + "LEFT JOIN pims.maintenance m ON ie.maintenance_id = m.id "
+                + "WHERE ie.test_id IS NULL "
+                + "AND ie.item_id = ? "
+                + "ORDER BY ie.id DESC ";
+        return jdbcTemplate.query(SQL, new MaintenanceEventMapper(), itemID);
     }
 
     public Number logEvent(final String mnem, final String displayText, final int itemID, final int userID, final Integer testID, final Integer maintenanceID) {

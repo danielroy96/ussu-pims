@@ -27,7 +27,7 @@ public class ItemEventService {
     }
     
     public List<MaintenanceEvent> getMaintenanceEvents(int itemId) {
-        return null;
+        return itemEventDAO.getMaintenanceEvents(itemId);
     }
     
     public void logEvent(String mnem, String displayText, int itemID, int userID, Integer testID, Integer maintenanceID) {

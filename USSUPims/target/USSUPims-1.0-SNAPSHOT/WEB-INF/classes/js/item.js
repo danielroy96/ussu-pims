@@ -36,10 +36,14 @@ $(document).ready(function () {
                 if (i % 2 !== 0) {
                     classToAdd = 'timeline-inverted';
                 }
+                var maintenanceDescription = "";
+                if (response[i].description !== null) {
+                    maintenanceDescription = response[i].description;
+                }
                 $('#maintenance-timeline').append(
                         $('<li>', {class: classToAdd + ' maintenance-timeline-item'}).append(
                         $('<div>', {class: 'timeline-panel'}).append(
-                        '<h4>' + response[i].displayText + '</h4> ' + response[i].eventDatetime + ' by ' + response[i].eventUserFullname)));
+                        '<h4>' + response[i].displayText + '</h4><p>' + maintenanceDescription + '</p><p>' + response[i].eventDatetime + ' by ' + response[i].eventUserFullname + '</p>')));
             }
             $('.maintenance-timeline-item').append($('<div>', {class: 'timeline-badge warning maintenance-timeline-badge'}));
             $('.maintenance-timeline-badge').append($('<i>', {class: 'glyphicon glyphicon-wrench'}));

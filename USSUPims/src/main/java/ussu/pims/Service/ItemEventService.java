@@ -30,4 +30,8 @@ public class ItemEventService {
         return null;
     }
     
+    public void logEvent(String mnem, String displayText, int itemID, int userID, Integer testID, Integer maintenanceID) {
+        itemEventDAO.logEvent(mnem, displayText, itemID, userID, testID, maintenanceID);
+    }
+    
 }

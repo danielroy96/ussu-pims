@@ -20,12 +20,16 @@ public class TestService {
     @Autowired
     private TestDAO testDAO;
     
-    public void testItemIncludeMeasurements(int itemID, float earthResistanceOhms, float insulationResistanceMOhms, int testOperatorUserID) {
-        testDAO.testItemIncludeMeasurements(itemID, earthResistanceOhms, insulationResistanceMOhms, testOperatorUserID);
+    @Autowired
+    private ItemEventService itemEventService;
+    
+    public void testItem(int itemID, Float earthResistanceOhms, Float insulationResistanceMOhms, int testOperatorUserID) {
+        int testID = testDAO.testItem(itemID, earthResistanceOhms, insulationResistanceMOhms, testOperatorUserID).intValue();
+        itemEventService.logEvent("TEST", "Item PAT tested", itemID, testOperatorUserID, testID, null);
     }
     
-    public void testItem(int itemID, int testOperatorUserID) {
+    /*public void testItem(int itemID, int testOperatorUserID) {
         testDAO.testItem(itemID, testOperatorUserID);
-    }
+    }*/
     
 }

@@ -22,24 +22,30 @@ import ussu.pims.Service.TestService;
  */
 @RestController
 public class TestController {
-    
+
     @Autowired
     private TestService testService;
-    
+
     @Autowired
     private ItemService itemService;
-    
-    @RequestMapping(value="/item/{barcode}/testmeasurements", method = RequestMethod.PUT)
-    public ResponseEntity<Object> testItemIncludeMeasurements(@RequestParam String testOperator, @PathVariable String barcode, @RequestParam String earthResistanceOhms, @RequestParam String insulationResistanceMOhms) {
-        testService.testItemIncludeMeasurements(itemService.getItemId(barcode), Float.parseFloat(earthResistanceOhms), Float.parseFloat(insulationResistanceMOhms), Integer.parseInt(testOperator));
+
+    @RequestMapping(value = "/item/{barcode}/test", method = RequestMethod.PUT)
+    public ResponseEntity<Object> testItem(@RequestParam String testOperator, @PathVariable String barcode, @RequestParam String earthResistanceOhms, @RequestParam String insulationResistanceMOhms) {
+        Float earthResistanceOhmsLocal = null;
+        if (!"null".equals(earthResistanceOhms)) {
+            earthResistanceOhmsLocal = Float.parseFloat(earthResistanceOhms);
+        }
+        Float insulationResistanceMOhmsLocal = null;
+        if (!"null".equals(insulationResistanceMOhms)) {
+            insulationResistanceMOhmsLocal = Float.parseFloat(insulationResistanceMOhms);
+        }
+        testService.testItem(itemService.getItemId(barcode), earthResistanceOhmsLocal, insulationResistanceMOhmsLocal, Integer.parseInt(testOperator));
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    @RequestMapping(value="/item/{barcode}/test", method = RequestMethod.PUT)
+
+    /*@RequestMapping(value="/item/{barcode}/test", method = RequestMethod.PUT)
     public ResponseEntity<Object> testItem(@RequestParam String testOperator, @PathVariable String barcode) {
         testService.testItem(itemService.getItemId(barcode), Integer.parseInt(testOperator));
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-    
-
+    }*/
 }

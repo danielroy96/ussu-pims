@@ -8,6 +8,7 @@ package ussu.pims.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,7 +30,7 @@ public class TestDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void testItemIncludeMeasurements(final int itemID, final Float earthResistanceOhms, final Float insulationResistanceMOhms, final int testOperatorUserID) {
+    public Number testItem(final int itemID, final Float earthResistanceOhms, final Float insulationResistanceMOhms, final int testOperatorUserID) {
         final String testSQL = ""
                 + "INSERT INTO pims.tests ("
                 + "  item_id"
@@ -47,18 +48,28 @@ public class TestDAO {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 new PreparedStatementCreator() {
-                    @Override
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement preparedStatement = connection.prepareStatement(testSQL, new String[]{"id"});
-                        preparedStatement.setInt(1, itemID);
-                        preparedStatement.setInt(2, testOperatorUserID);
-                        preparedStatement.setFloat(3, earthResistanceOhms);
-                        preparedStatement.setFloat(4, insulationResistanceMOhms);
-                        return preparedStatement;
-                    }
-            }, keyHolder
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement preparedStatement = connection.prepareStatement(testSQL, new String[]{"id"});
+                preparedStatement.setInt(1, itemID);
+                preparedStatement.setInt(2, testOperatorUserID);
+                if (earthResistanceOhms != null) {
+                    preparedStatement.setFloat(3, earthResistanceOhms);
+                } else {
+                    preparedStatement.setNull(3, Types.FLOAT);
+                }
+                if (insulationResistanceMOhms != null) {
+                    preparedStatement.setFloat(4, insulationResistanceMOhms);
+                }
+                else {
+                    preparedStatement.setNull(4, Types.FLOAT);
+                }
+                return preparedStatement;
+            }
+        }, keyHolder
         );
-        String eventSQL = ""
+        return keyHolder.getKey();
+        /*String eventSQL = ""
                 + "INSERT INTO pims.item_events ("
                 + "  mnem"
                 + ", display_text"
@@ -74,10 +85,10 @@ public class TestDAO {
                 + ", ?"
                 + ", ?"
                 + ")";
-        jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());
+        jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());*/
     }
-    
-        public void testItem(final int itemID, final int testOperatorUserID) {
+
+    /*public void testItem(final int itemID, final int testOperatorUserID) {
         final String testSQL = ""
                 + "INSERT INTO pims.tests ("
                 + "  item_id"
@@ -118,5 +129,5 @@ public class TestDAO {
                 + ")";
         jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());
     }
-
+     */
 }

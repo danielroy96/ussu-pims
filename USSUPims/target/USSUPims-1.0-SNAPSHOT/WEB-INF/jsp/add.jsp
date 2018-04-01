@@ -76,7 +76,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="itemTypeName">Item Type</label>
-                        <select id="itemTypeName" class="selectpicker form-control" data-live-search="true">
+                        <select id="itemTypeName" class="selectpicker form-control" data-live-search="true" required>
                         </select>
                         <p class="form-text text-muted">Start typing to find an item type</p>
                         <a data-toggle="modal" data-target="#itemTypeAddModal">Add a new item type...</a>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button id="btnAddItem" class="btn btn-primary">Add Item</button>
+                        <button id="btnAddItem" class="btn btn-primary" onclick="addItem(); return false;">Add Item</button>
                     </div>
                 </div>
             </form>

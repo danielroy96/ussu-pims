@@ -78,3 +78,19 @@ function enableDisablePATInterval() {
     $('#newItemTypePATinterval').html('').removeClass('parsley-error');
     $('#PATIntervalGroup').toggle();
 }
+
+function addItem() {
+    $('#newItem').parsley().validate();
+    if ($('#newItem').parsley().isValid()) {
+        var itemTypeName = encodeURIComponent($('#itemTypeName').val());
+        var description = encodeURIComponent($('#description').val() || null);
+        var itemBarcode = encodeURIComponent($('#itemBarcode').val());
+    }
+    $.ajax({
+        url: 'item?itemType=' + itemTypeName + '&description=' + description + '&barcode=' + itemBarcode,
+        type: "PUT",
+        success: function(response){
+            alert("item added");
+        }
+    });
+}

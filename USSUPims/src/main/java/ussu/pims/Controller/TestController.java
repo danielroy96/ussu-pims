@@ -6,13 +6,12 @@
 package ussu.pims.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ussu.pims.Model.Item;
 import ussu.pims.Service.ItemService;
 import ussu.pims.Service.TestService;
 
@@ -30,7 +29,7 @@ public class TestController {
     private ItemService itemService;
 
     @RequestMapping(value = "/item/{barcode}/test", method = RequestMethod.PUT)
-    public ResponseEntity<Object> testItem(@RequestParam String testOperator, @PathVariable String barcode, @RequestParam String earthResistanceOhms, @RequestParam String insulationResistanceMOhms) {
+    public Item testItem(@RequestParam String testOperator, @PathVariable String barcode, @RequestParam String earthResistanceOhms, @RequestParam String insulationResistanceMOhms) {
         Float earthResistanceOhmsLocal = null;
         if (!"null".equals(earthResistanceOhms)) {
             earthResistanceOhmsLocal = Float.parseFloat(earthResistanceOhms);
@@ -40,7 +39,7 @@ public class TestController {
             insulationResistanceMOhmsLocal = Float.parseFloat(insulationResistanceMOhms);
         }
         testService.testItem(itemService.getItemId(barcode), earthResistanceOhmsLocal, insulationResistanceMOhmsLocal, Integer.parseInt(testOperator));
-        return new ResponseEntity<>(HttpStatus.OK);
+        return itemService.getItem(barcode);
     }
 
     /*@RequestMapping(value="/item/{barcode}/test", method = RequestMethod.PUT)

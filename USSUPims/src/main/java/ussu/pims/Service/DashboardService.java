@@ -25,4 +25,12 @@ public class DashboardService {
         return dashboardDAO.getAllTests7Days(userId);
     }
     
+    public List<ChartDataPoint> getAllTests14Days(int userId) {
+        return dashboardDAO.getAllTests14Days(userId);
+    }
+
+    public List<ChartDataPoint> getAllTests1Year(int userID) {
+        return dashboardDAO.getAllTests1Year(userID);
+    }
+    
 }

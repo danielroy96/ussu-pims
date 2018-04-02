@@ -33,4 +33,14 @@ public class DashboardRestController {
         return dashboardService.getAllTests7Days(userService.getUserID(principal));
     }
     
+    @RequestMapping(value="dashboard/chart/test14days", method = RequestMethod.GET)
+    public List<ChartDataPoint> getAllTests14Days(Principal principal) {
+        return dashboardService.getAllTests14Days(userService.getUserID(principal));
+    }
+    
+    @RequestMapping(value="dashboard/chart/test1year", method = RequestMethod.GET)
+    public List<ChartDataPoint> getAllTests1Year(Principal principal) {
+        return dashboardService.getAllTests1Year(userService.getUserID(principal));
+    }
+    
 }

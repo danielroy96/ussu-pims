@@ -75,11 +75,13 @@
                         <thead>
                             <tr>
                                 <th>Barcode</th>
+                                <th>Item Type</th>
                                 <th>Test Operator</th>
                             </tr>
                         </thead>
                         <tbody class="testedItems">
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>

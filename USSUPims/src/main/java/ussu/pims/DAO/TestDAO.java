@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ussu.pims.Mapper.TestMapper;
+import ussu.pims.Model.Test;
 
 /**
  *
@@ -60,8 +62,7 @@ public class TestDAO {
                 }
                 if (insulationResistanceMOhms != null) {
                     preparedStatement.setFloat(4, insulationResistanceMOhms);
-                }
-                else {
+                } else {
                     preparedStatement.setNull(4, Types.FLOAT);
                 }
                 return preparedStatement;
@@ -130,4 +131,16 @@ public class TestDAO {
         jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());
     }
      */
+    public Test getLatestTest(int itemID) {
+        String SQL = ""
+                + "SELECT\n"
+                + "  tl.id\n"
+                + ", tl.item_id\n"
+                + ", DATE_FORMAT(tl.test_datetime, '%H:%i %d/%m/%Y') test_datetime\n"
+                + ", CONCAT(udc.title, ' ', udc.forename, ' ', udc.surname) test_user_fullname\n"
+                + "FROM pims.tests_latest tl\n"
+                + "JOIN pims.user_details_current udc ON tl.test_user = udc.user_id\n"
+                + "WHERE tl.item_id = ?";
+        return jdbcTemplate.query(SQL, new TestMapper(), itemID).get(0);
+    }
 }

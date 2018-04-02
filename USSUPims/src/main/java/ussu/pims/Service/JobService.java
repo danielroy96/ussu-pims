@@ -5,7 +5,9 @@
  */
 package ussu.pims.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ussu.pims.DAO.JobDAO;
 
 /**
  *
@@ -13,5 +15,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class JobService {
+    
+    @Autowired
+    private JobDAO jobDAO;
+    
+    public int addJob(String name, String description, Integer clientId, String jobStartDatetime, String jobEndDatetime, String venue) {
+        return jobDAO.addJob(name, description, clientId, jobStartDatetime, jobEndDatetime, venue);
+    }
+    
     
 }

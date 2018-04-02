@@ -51,7 +51,7 @@ function test() {
                         url: 'item/' + barcode + '/test?earthResistanceOhms=' + earthResistanceOhms + '&insulationResistanceMOhms=' + insulationResistanceMOhms + '&testOperator=' + testOperator,
                         type: "PUT",
                         success: function (response) {
-                            addCompletedTestRow(barcode, testOperatorName);
+                            addCompletedTestRow(barcode,response.itemTypeName, testOperatorName);
                             resetScreen();
                         }
                     });
@@ -70,9 +70,9 @@ function enableDisableTestMeasurements() {
     $('.testMeasurements').toggle();
 }
 
-function addCompletedTestRow(barcode, testOperator) {
+function addCompletedTestRow(barcode, itemTypeName, testOperator) {
     $('#completedTestTable').show();
-    $('#completedTestTable tr:first').after('<tr><td>' + barcode + '</td><td>' + testOperator + '</td></tr>');
+    $('#completedTestTable tr:first').after('<tr><td>' + barcode + '</td><td>' + itemTypeName + '</td><td>' + testOperator + '</td></tr>');
 }
 
 function resetScreen() {

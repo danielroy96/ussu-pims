@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ussu.pims.Model.Item;
 import ussu.pims.Model.ItemReportRow;
+import ussu.pims.Model.Job;
 import ussu.pims.Model.User;
 import ussu.pims.Report.ItemReport;
 import ussu.pims.Service.ItemService;
+import ussu.pims.Service.JobService;
 import ussu.pims.Service.ReportService;
 import ussu.pims.Service.UserService;
 
@@ -37,7 +39,7 @@ public class DashboardController {
     private ItemService itemService;
     
     @Autowired
-    private ReportService reportService;
+    private JobService jobService;
 
     /**
      * Maps requests for /index to the index view
@@ -110,6 +112,18 @@ public class DashboardController {
     @RequestMapping(value = "/pat", method = RequestMethod.GET)
     protected String reportPAT(Model model) throws Exception {
         return "report/pat";
+    }
+    
+    @RequestMapping(value="/new-job", method=RequestMethod.GET)
+    protected String newJob() throws Exception {
+        return "addjob";
+    }
+    
+        @RequestMapping(value="/job-details", method=RequestMethod.GET)
+    protected String eventDetails(@RequestParam String jobId, Model model) throws Exception {
+        Job job = jobService.getJob(Integer.parseInt(jobId));
+        model.addAttribute(job);
+        return "job";
     }
 
 //    @RequestMapping(value = "/user/{userID}", method = RequestMethod.GET)

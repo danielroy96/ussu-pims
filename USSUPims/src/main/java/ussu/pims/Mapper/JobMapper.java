@@ -17,8 +17,20 @@ import ussu.pims.Model.Job;
 public class JobMapper implements RowMapper<Job>{
 
     @Override
-    public Job mapRow(ResultSet rs, int i) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Job mapRow(ResultSet resultSet, int i) throws SQLException {
+        return new Job(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getString("description"),
+                resultSet.getString("job_start_datetime"),
+                resultSet.getString("job_end_datetime"),
+                resultSet.getString("venue"),
+                resultSet.getInt("client_id"),
+                resultSet.getString("client_name"),
+                resultSet.getString("client_contact_name"),
+                resultSet.getString("client_contact_email"),
+                resultSet.getString("client_contact_phone")
+        );
     }
     
 }

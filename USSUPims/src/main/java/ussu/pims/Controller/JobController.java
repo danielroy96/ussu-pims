@@ -5,10 +5,13 @@
  */
 package ussu.pims.Controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ussu.pims.Model.JobItem;
 import ussu.pims.Service.JobService;
 
 /**
@@ -44,6 +47,11 @@ public class JobController {
             venueLocal = venue;
         }
         return jobService.addJob(name, descriptionLocal, clientIdLocal, jobStartDatetimeLocal, jobEndDatetimeLocal, venueLocal);
+    }
+    
+    @RequestMapping(value="job/{jobId}", method = RequestMethod.GET)
+    public List<JobItem> getJobItems (@PathVariable String jobId) {
+        return jobService.getJobItems(Integer.parseInt(jobId));
     }
     
 }

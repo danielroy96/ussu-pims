@@ -29,6 +29,10 @@ html {
     margin-top:20px;
 }
 
+.btn-fullwidth {
+    width: 100%;
+}
+
 /*
 
 .navbar-brand {

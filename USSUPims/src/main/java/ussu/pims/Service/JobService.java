@@ -5,9 +5,13 @@
  */
 package ussu.pims.Service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ussu.pims.DAO.JobDAO;
+import ussu.pims.Model.Item;
+import ussu.pims.Model.Job;
+import ussu.pims.Model.JobItem;
 
 /**
  *
@@ -23,5 +27,12 @@ public class JobService {
         return jobDAO.addJob(name, description, clientId, jobStartDatetime, jobEndDatetime, venue);
     }
     
+    public Job getJob(int jobId) {
+        return jobDAO.getJob(jobId);
+    }
+    
+    public List<JobItem> getJobItems (int jobId) {
+        return jobDAO.getJobItems(jobId);
+    }
     
 }

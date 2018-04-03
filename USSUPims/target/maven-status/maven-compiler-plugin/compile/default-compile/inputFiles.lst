@@ -9,11 +9,14 @@
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/ChartDataPoint.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/Test.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Mapper/UserMapper.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Mapper/JobItemMapper.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Mapper/TestMapper.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/ClientController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/DAO/TestDAO.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/DashboardRestController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/MaintenanceEvent.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/AppProperties.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/ClientService.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/UserService.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Mapper/JobMapper.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/ReportController.java
@@ -22,11 +25,13 @@
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/DashboardService.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/DAO/MaintenanceDAO.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/MaintenanceService.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/JobItem.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/JobService.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/ItemTypeService.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/TestEvent.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Mapper/MaintenanceEventMapper.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Config/SecurityWebApplicationInitializer.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/DAO/ClientDAO.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/DashboardController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/ItemReportRow.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/DAO/ItemDAO.java
@@ -44,6 +49,7 @@
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/JobController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/UserController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/ItemEventController.java
+/Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Model/Client.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Controller/ItemTypeController.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Mapper/TestEventMapper.java
 /Users/danielroy/Documents/Uni/PIMS/USSUPims/src/main/java/ussu/pims/Service/ItemService.java

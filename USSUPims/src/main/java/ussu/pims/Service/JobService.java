@@ -34,5 +34,17 @@ public class JobService {
     public List<JobItem> getJobItems (int jobId) {
         return jobDAO.getJobItems(jobId);
     }
+
+    public int addJobItem(int jobId, int itemId) {
+        return jobDAO.addJobItem(jobId, itemId);
+    }
+
+    public void returnJobItem(int jobId, int itemId) {
+        jobDAO.returnJobItem(jobId,itemId);
+    }
+
+    public void removeJobItem(int jobId, int itemId) {
+        jobDAO.removeJobItem(jobId, itemId);
+    }
     
 }

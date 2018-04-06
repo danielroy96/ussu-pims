@@ -7,12 +7,15 @@ package ussu.pims.Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import ussu.pims.Model.Item;
 import ussu.pims.Model.JobItem;
+import ussu.pims.Service.ItemService;
 import ussu.pims.Service.JobService;
+
+import javax.xml.ws.Response;
 
 /**
  *
@@ -23,6 +26,9 @@ public class JobController {
     
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private ItemService itemService;
     
     @RequestMapping(value="job", method = RequestMethod.PUT)
     public int addJob(String name, String description, String clientId, String jobStartDatetime, String jobEndDatetime, String venue) {
@@ -52,6 +58,23 @@ public class JobController {
     @RequestMapping(value="job/{jobId}", method = RequestMethod.GET)
     public List<JobItem> getJobItems (@PathVariable String jobId) {
         return jobService.getJobItems(Integer.parseInt(jobId));
+    }
+
+    @RequestMapping(value="job/{jobId}", method=RequestMethod.PUT)
+    public int addJobItem(@PathVariable String jobId, @RequestParam String itemBarcode) {
+        return jobService.addJobItem(Integer.parseInt(jobId), itemService.getItemId(itemBarcode));
+    }
+
+    @RequestMapping(value="job/{jobId}/{itemId}", method=RequestMethod.PATCH)
+    public ResponseEntity<Object> returnJobItem(@PathVariable String jobId, @PathVariable String itemId) {
+        jobService.returnJobItem(Integer.parseInt(jobId), Integer.parseInt(itemId));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="job/{jobId}/{itemId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> removeJobItem(@PathVariable String jobId, @PathVariable String itemId) {
+        jobService.removeJobItem(Integer.parseInt(jobId), Integer.parseInt(itemId));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
 }

@@ -140,5 +140,51 @@ public class JobDAO {
                 + "WHERE ij.job_id = ?";
         return jdbcTemplate.query(SQL, new JobItemMapper(), jobId);
     }
+
+    public int addJobItem(final int jobId, final int itemId) {
+        final String SQL = "" +
+                "INSERT INTO pims.item_on_job (" +
+                "  item_id" +
+                ", job_id" +
+                ", status" +
+                ", added_datetime" +
+                ") VALUES (" +
+                "  ?" +
+                ", ?" +
+                ", 'OUT'" +
+                ", NOW()" +
+                ")";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(
+                new PreparedStatementCreator() {
+                    @Override
+                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                        PreparedStatement preparedStatement = connection.prepareStatement(SQL, new String[]{"id"});
+                        preparedStatement.setInt(1, itemId);
+                        preparedStatement.setInt(2, jobId);
+                        return preparedStatement;
+                    }
+                }, keyHolder
+        );
+        return keyHolder.getKey().intValue();
+    }
+
+    public void returnJobItem(int jobId, int itemId) {
+        String SQL = "" +
+                "UPDATE pims.item_on_job  " +
+                "SET status = 'RETURNED', " +
+                "  returned_datetime = NOW()" +
+                "WHERE item_id = ? " +
+                "AND job_id = ?";
+        jdbcTemplate.update(SQL, itemId, jobId);
+    }
+
+    public void removeJobItem(int jobId, int itemId) {
+        String SQL = "" +
+                "DELETE FROM pims.item_on_job " +
+                "WHERE item_id = ? " +
+                "AND job_id = ?";
+        jdbcTemplate.update(SQL, itemId, jobId);
+    }
     
 }

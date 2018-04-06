@@ -60,6 +60,11 @@ public class ItemController {
         return itemService.addItem(barcode, descriptionLocal, Integer.parseInt(itemType), userService.getUserID(principal));
     }
 
+    @RequestMapping(value = "item/{itemBarcode}", method = RequestMethod.GET)
+    public Item getItem(@PathVariable String itemBarcode) {
+        return itemService.getItem(itemBarcode);
+    }
+
     @RequestMapping(value = "item/{itemID}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateItem(@PathVariable String itemID, @RequestParam String barcode, @RequestParam String description, @RequestParam String itemType, Principal principal) {
         itemService.updateItem(Integer.parseInt(itemID), barcode, description, Integer.parseInt(itemType), userService.getUserID(principal));

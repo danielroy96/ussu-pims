@@ -11,6 +11,7 @@ $(document).ready(function () {
     $('#newJob').parsley({
         excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], input:hidden"
     });
+    refreshJobItems();
 });
 
 function addJob() {
@@ -33,11 +34,37 @@ function addJob() {
 }
 
 function checkInOutItem() {
-    if ($('#btnCheckInOut').hasClass('btn-primary')) {
-        //check out
-    } else {
-        //check in
-    }
+    var barcode = encodeURIComponent($('#barcode').val());
+    var item;
+    $.ajax({
+        url: 'item/' + barcode,
+        type: "GET",
+        success: function (response) {
+            item = response;
+            var jobId = encodeURIComponent($('#jobId').val());
+            if ($('#btnCheckInOut').hasClass('btn-primary')) {
+                //check out
+                $.ajax({
+                    url: 'job/' + jobId + '?itemBarcode=' + barcode,
+                    type: "PUT",
+                    success: function () {
+                        $('#jobItems').prepend('<tr id="' + item.id + '"><td>' + item.barcode + '</td><td>' + item.itemTypeName + '</td><td>' + 'Checked out' + '</td><td><a onclick="removeJobItem(' + jobId + ',' + item.id + ')">Remove</a></td></tr>')
+                    }
+                })
+            } else {
+                //check in
+                $.ajax({
+                    url: 'job/' + jobId + '/' + item.id,
+                    type: "PATCH",
+                    success: function () {
+                        $('#' + item.id).children().eq(2).html('Returned')
+                    }
+                });
+            }
+            $('#barcode').val('');
+        }
+    });
+    refreshJobItems();
 }
 
 function switchCheckInOut() {
@@ -59,8 +86,22 @@ function refreshJobItems() {
         success: function (response) {
             $('#jobItems').html('');
             for (var i = 0; i < response.length; i++) {
-                $('#jobItems').append('<tr><td>' + response[i].item.barcode + '</td><td>' + response[i].item.itemTypeName + '</td><td>' + response[i].status + '</td><td></td></tr>')
+                var statusText = 'Checked out';
+                if (response[i].status == 'RETURNED') {
+                    statusText = 'Returned';
+                }
+                $('#jobItems').prepend('<tr id="' + response[i].item.id + '"><td>' + response[i].item.barcode + '</td><td>' + response[i].item.itemTypeName + '</td><td>' + statusText + '</td><td><a onclick="removeJobItem(' + jobId + ',' + response[i].item.id + ')">Remove</a></td></tr>')
             }
+        }
+    });
+}
+
+function removeJobItem(jobId, itemId) {
+    $.ajax({
+        url: 'job/' + jobId + '/' + itemId,
+        type: "DELETE",
+        success: function () {
+            $('tr#' + itemId).remove();
         }
     });
 }

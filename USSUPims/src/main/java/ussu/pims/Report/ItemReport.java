@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 import ussu.pims.Model.ItemReportRow;
 
@@ -35,18 +34,33 @@ public class ItemReport extends AbstractXlsxView {
         header.createCell(5).setCellValue("PAT Test Interval (months)");
         header.createCell(6).setCellValue("PAT Test Date");
         header.createCell(7).setCellValue("PAT Test User");
+        header.createCell(8).setCellValue("PAT Test in date");
 
         int rowNum = 1;
         for (ItemReportRow itemReportRow : itemReportRowList) {
             Row row = sheet.createRow(rowNum++);
+            CellStyle expiredStyle = workbook.createCellStyle();
+            expiredStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
+            expiredStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            CellStyle inDateStyle = workbook.createCellStyle();
+            inDateStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+            expiredStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
             row.createCell(0).setCellValue(itemReportRow.getItem().getBarcode());
             row.createCell(1).setCellValue(itemReportRow.getItem().getItemTypeName());
             row.createCell(2).setCellValue(itemReportRow.getItem().getValue());
             row.createCell(3).setCellValue(itemReportRow.getItem().getWeight());
             row.createCell(4).setCellValue(itemReportRow.getItem().isRequiresPat());
             row.createCell(5).setCellValue(itemReportRow.getItem().getPatIntervalMonths());
-            row.createCell(6).setCellValue(itemReportRow.getTest().getTestDatetime());
+            Cell cell6 = row.createCell(6);
+            cell6.setCellValue(itemReportRow.getTest().getTestDatetime());
+            if (itemReportRow.getItem().isPatInDate() && itemReportRow.getItem().isRequiresPat()) {
+                cell6.setCellStyle(inDateStyle);
+            } else if (!itemReportRow.getItem().isPatInDate() && itemReportRow.getItem().isRequiresPat()) {
+                cell6.setCellStyle(expiredStyle);
+            }
             row.createCell(7).setCellValue(itemReportRow.getTest().getTestUserFullname());
+            row.createCell(8).setCellValue(itemReportRow.getItem().isPatInDate());
         }
     }
 

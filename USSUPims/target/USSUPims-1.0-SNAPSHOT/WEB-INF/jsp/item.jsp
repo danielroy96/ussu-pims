@@ -15,7 +15,7 @@
                 <li>${item.itemTypeName}</li>
             </ol>
             <h2>${item.itemTypeName}</h2>
-            <p>Last updated ${item.lastChangedDateTime} by ${item.lastChangedByUserFullname}</p>
+            <p><c:if test="${item.patInDate}"><span class="label label-success">In date</span></c:if><c:if test="${!item.patInDate}"><span class="label label-danger">Expired</span></c:if> Last updated ${item.lastChangedDateTime} by ${item.lastChangedByUserFullname}</p>
         </div>
         <div class="container">
             <div class="form-row">

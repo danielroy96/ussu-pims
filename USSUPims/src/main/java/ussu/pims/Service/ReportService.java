@@ -24,5 +24,8 @@ public class ReportService {
     public List<ItemReportRow> getAllItems() {
         return reportDAO.getAllItems();
     }
-    
+
+    public List<ItemReportRow> getJobItems(int jobId) {
+        return null;//reportDAO.getJobItems(jobId);
+    }
 }

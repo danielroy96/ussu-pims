@@ -33,7 +33,9 @@ public class ItemMapper implements RowMapper<Item> {
                 resultSet.getFloat("value"),
                 resultSet.getFloat("weight"),
                 resultSet.getBoolean("requires_pat"),
-                resultSet.getInt("pat_interval_months")
+                resultSet.getInt("pat_interval_months"),
+                resultSet.getString("last_pat_test_datetime"),
+                resultSet.getBoolean("pat_in_date")
         );
     }
     

@@ -105,3 +105,8 @@ function removeJobItem(jobId, itemId) {
         }
     });
 }
+
+function exportJob() {
+    var jobId = $('#jobId').val();
+
+}

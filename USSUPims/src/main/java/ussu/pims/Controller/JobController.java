@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ussu.pims.Model.Item;
+import ussu.pims.Model.Job;
 import ussu.pims.Model.JobItem;
 import ussu.pims.Service.ItemService;
 import ussu.pims.Service.JobService;
@@ -29,6 +30,11 @@ public class JobController {
 
     @Autowired
     private ItemService itemService;
+
+    @RequestMapping(value="job", method=RequestMethod.GET)
+    public List<Job> quickSearch(@RequestParam String searchTerm) {
+        return jobService.quickSearch(searchTerm);
+    }
     
     @RequestMapping(value="job", method = RequestMethod.PUT)
     public int addJob(String name, String description, String clientId, String jobStartDatetime, String jobEndDatetime, String venue) {

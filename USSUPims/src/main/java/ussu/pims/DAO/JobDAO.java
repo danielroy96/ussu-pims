@@ -86,6 +86,26 @@ public class JobDAO {
         return keyHolder.getKey().intValue();
     }
 
+    public List<Job> quickSearch(String searchTerm) {
+        String SQL = "" +
+                "SELECT" +
+                "  j.id" +
+                ", j.name" +
+                ", j.description" +
+                ", j.job_start_datetime" +
+                ", j.job_end_datetime" +
+                ", j.venue" +
+                ", c.id client_id" +
+                ", c.name client_name" +
+                ", c.contact_name client_contact_name" +
+                ", c.contact_email client_contact_email" +
+                ", c.contact_phone client_contact_phone " +
+                "FROM pims.jobs j " +
+                "LEFT OUTER JOIN pims.clients c ON j.client_id = c.id " +
+                "WHERE j.name LIKE CONCAT('%', ?, '%')";
+        return jdbcTemplate.query(SQL, new JobMapper(), searchTerm);
+    }
+
     public Job getJob(int jobId) {
         String SQL = ""
                 + "SELECT"

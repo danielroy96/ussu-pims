@@ -4,6 +4,7 @@
 <html>
     <head>
         <%@include file="/WEB-INF/jspf/lib.jspf" %>
+        <script src="js/events.js"></script>
     </head>
     <body>
         <%@include file="/WEB-INF/jspf/nav.jspf" %>
@@ -24,6 +25,22 @@
                             <li>Prep and check out items</li>
                         </ul>
                     </a>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <h1><small>Search for events</small></h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select id="jobSearch" class="selectpicker form-control" data-live-search="true">
+                    </select>
+                    <div class="form-text text-muted">Start typing to find an event</div>
+                </div>
+                <div class="form-group col-md-6">
+                    <button class="btn btn-fullwidth btn-primary" onclick="selectQuickSearch();">Select event</button>
                 </div>
             </div>
         </div>

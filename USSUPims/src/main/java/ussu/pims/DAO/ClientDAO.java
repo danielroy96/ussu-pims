@@ -9,12 +9,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ussu.pims.Mapper.ClientMapper;
+import ussu.pims.Model.Client;
 
 /**
  *
@@ -25,6 +29,19 @@ public class ClientDAO {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    public List<Client> quickSearch(String searchTerm) {
+        String SQL = "" +
+                "SELECT" +
+                "  c.id" +
+                ", c.name" +
+                ", c.contact_name" +
+                ", c.contact_email" +
+                ", c.contact_phone " +
+                "FROM pims.clients c " +
+                "WHERE c.name LIKE CONCAT('%', ?, '%')";
+        return jdbcTemplate.query(SQL, new ClientMapper(), searchTerm);
+    }
 
     public int addClient(final String name, final String contactName, final String contactEmail, final String contactPhone) {
         final String SQL = ""

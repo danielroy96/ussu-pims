@@ -53,6 +53,23 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
+        <h1><small>Export this job</small></h1>
+        <hr>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <a class='btn btn-primary dashboard-action' onclick="exportJob();">
+                <p class='button-heading-text'><span class='glyphicon glyphicon-stats'></span> Download report</p>
+                <ul>
+                    <li>Includes all items on this job</li>
+                    <li>Generates a Microsoft&reg; Excel spreadsheet</li>
+                </ul>
+            </a>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
             <h1>
                 <small>Equipment on the event</small>
             </h1>

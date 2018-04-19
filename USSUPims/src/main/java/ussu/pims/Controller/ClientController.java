@@ -8,8 +8,12 @@ package ussu.pims.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ussu.pims.Model.Client;
 import ussu.pims.Service.ClientService;
+
+import java.util.List;
 
 /**
  *
@@ -20,6 +24,11 @@ public class ClientController {
     
     @Autowired
     private ClientService clientService;
+
+    @RequestMapping(value="client", method=RequestMethod.GET)
+    public List<Client> quickSearch (@RequestParam String searchTerm) {
+        return clientService.quickSearch(searchTerm);
+    }
     
     @RequestMapping(value="client", method = RequestMethod.PUT)
     public int addClient(String name, String contactName, String contactEmail, String contactPhone) {

@@ -26,8 +26,10 @@ public class Item {
     private float weight;
     private boolean requiresPat;
     private int patIntervalMonths;
+    private String lastPatTestDatetime;
+    private boolean patInDate;
 
-    public Item(int id, int createdByUserId, String createdByUserFullname, String createdDatetime, String lastChangedDateTime, int lastChangedByUserId, String lastChangedByUserFullname, String barcode, String description, int itemTypeId, String itemTypeName, float value, float weight, boolean requiresPat, int patIntervalMonths) {
+    public Item(int id, int createdByUserId, String createdByUserFullname, String createdDatetime, String lastChangedDateTime, int lastChangedByUserId, String lastChangedByUserFullname, String barcode, String description, int itemTypeId, String itemTypeName, float value, float weight, boolean requiresPat, int patIntervalMonths, String lastPatTestDatetime, boolean patInDate) {
         this.id = id;
         this.createdByUserId = createdByUserId;
         this.createdByUserFullname = createdByUserFullname;
@@ -43,6 +45,8 @@ public class Item {
         this.weight = weight;
         this.requiresPat = requiresPat;
         this.patIntervalMonths = patIntervalMonths;
+        this.lastPatTestDatetime = lastPatTestDatetime;
+        this.patInDate = patInDate;
     }
 
     public int getId() {
@@ -104,7 +108,12 @@ public class Item {
     public String getLastChangedByUserFullname() {
         return lastChangedByUserFullname;
     }
-    
-    
-    
+
+    public String getLastPatTestDatetime() {
+        return lastPatTestDatetime;
+    }
+
+    public boolean isPatInDate() {
+        return patInDate;
+    }
 }

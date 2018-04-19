@@ -8,6 +8,7 @@ package ussu.pims.Controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,8 +27,14 @@ public class ReportController {
     private ReportService reportService;
 
     @RequestMapping(value = "/report/all", method = RequestMethod.GET)
-    public ModelAndView getExcel() {
+    public ModelAndView getAll() {
         List<ItemReportRow> itemReportRowList = reportService.getAllItems();
+        return new ModelAndView(new ItemReport(), "itemReportRowList", itemReportRowList);
+    }
+
+    @RequestMapping(value="job/{jobId}/report", method=RequestMethod.GET)
+    public ModelAndView getJob(@PathVariable String jobId) {
+        List<ItemReportRow> itemReportRowList = reportService.getJobItems(Integer.parseInt(jobId));
         return new ModelAndView(new ItemReport(), "itemReportRowList", itemReportRowList);
     }
 

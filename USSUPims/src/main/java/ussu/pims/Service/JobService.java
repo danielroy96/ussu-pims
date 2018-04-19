@@ -26,7 +26,11 @@ public class JobService {
     public int addJob(String name, String description, Integer clientId, String jobStartDatetime, String jobEndDatetime, String venue) {
         return jobDAO.addJob(name, description, clientId, jobStartDatetime, jobEndDatetime, venue);
     }
-    
+
+    public List<Job> quickSearch(String searchTerm) {
+        return jobDAO.quickSearch(searchTerm);
+    }
+
     public Job getJob(int jobId) {
         return jobDAO.getJob(jobId);
     }

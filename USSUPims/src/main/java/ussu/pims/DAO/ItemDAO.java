@@ -62,11 +62,18 @@ public class ItemDAO {
                 + ", it.weight weight"
                 + ", it.requires_pat requires_pat"
                 + ", it.pat_interval_months pat_interval_months "
+                + ", tl.test_datetime last_pat_test_datetime "
+                + ", CASE " +
+                "      WHEN idceid.id IS NULL THEN FALSE " +
+                "      ELSE TRUE " +
+                "    END pat_in_date "
                 + "FROM pims.items i "
                 + "JOIN pims.item_details_current_extant idce ON i.id = idce.item_id "
                 + "JOIN pims.item_types it ON idce.item_type = it.id "
                 + "JOIN pims.user_details_current udcc ON udcc.user_id = i.created_by_user_id "
                 + "JOIN pims.user_details_current udcl ON udcl.user_id = idce.last_changed_by_user_id "
+                + "LEFT OUTER JOIN pims.item_details_current_extant_in_date idceid ON idceid.id = idce.id "
+                + "LEFT OUTER JOIN pims.tests_latest tl ON tl.item_id = i.id "
                 + "WHERE idce.barcode = ?";
         return jdbcTemplate.query(SQL, new ItemMapper(), barcode).get(0);
     }
@@ -89,11 +96,18 @@ public class ItemDAO {
                 + ", it.weight weight"
                 + ", it.requires_pat requires_pat"
                 + ", it.pat_interval_months pat_interval_months "
+                + ", tl.test_datetime last_pat_test_datetime "
+                + ", CASE " +
+                "      WHEN idceid.id IS NULL THEN FALSE " +
+                "      ELSE TRUE " +
+                "    END pat_in_date "
                 + "FROM pims.items i "
                 + "JOIN pims.item_details_current_extant idce ON i.id = idce.item_id "
                 + "JOIN pims.item_types it ON idce.item_type = it.id "
                 + "JOIN pims.user_details_current udcc ON udcc.user_id = i.created_by_user_id "
                 + "JOIN pims.user_details_current udcl ON udcl.user_id = idce.last_changed_by_user_id "
+                + "LEFT OUTER JOIN pims.item_details_current_extant_in_date idceid ON idceid.id = idce.id "
+                + "LEFT OUTER JOIN pims.tests_latest tl ON tl.item_id = i.id "
                 + "WHERE UPPER(CONCAT(it.name, idce.barcode)) LIKE REPLACE(UPPER(CONCAT('%', ?, '%')), ' ', '%')";
         return jdbcTemplate.query(SQL, new ItemMapper(), searchTerm);
     }

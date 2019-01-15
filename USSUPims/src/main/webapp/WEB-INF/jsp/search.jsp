@@ -50,49 +50,49 @@
             <div class="form-row">
 
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <h1><small>Advanced search</small></h1>
-                    <hr>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="searchTerms">Search Terms</label>
-                    <input id="searchTerms" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <p><strong>PAT Test Status</strong></p>
-                    <div class="checkbox">
-                        <label for="validPAT"><input name="validPAT" id="validPAT" type="checkbox">PAT test in date</label>
-                    </div>
-                    <div class="checkbox">
-                        <label for="expiringPAT"><input name="expiringPAT" id="expiringPAT" type="checkbox">PAT expiring soon</label>
-                    </div>
-                    <div class="checkbox">
-                        <label for="invalidPAT"><input name="invalidPAT" id="invalidPAT" type="checkbox">PAT test expired</label>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <p><strong>Other Parameters</strong></p>
-                    <div class="checkbox">
-                        <label for="validPAT"><input name="validPAT" id="validPAT" type="checkbox">PAT test in date</label>
-                    </div>
-                    <div class="checkbox">
-                        <label for="expiringPAT"><input name="expiringPAT" id="expiringPAT" type="checkbox">PAT expiring soon</label>
-                    </div>
-                    <div class="checkbox">
-                        <label for="invalidPAT"><input name="invalidPAT" id="invalidPAT" type="checkbox">PAT test expired</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <button id="btnSearchAdvanced" onclick="advancedSearch(); return false;" class="btn btn-primary btn-fullwidth" type="button">Search</button>
-                </div>
-            </div>
+            <%--<div class="form-row">--%>
+                <%--<div class="form-group col-md-12">--%>
+                    <%--<h1><small>Advanced search</small></h1>--%>
+                    <%--<hr>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="form-row">--%>
+                <%--<div class="form-group col-md-12">--%>
+                    <%--<label for="searchTerms">Search Terms</label>--%>
+                    <%--<input id="searchTerms" class="form-control" type="text">--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="form-row">--%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<p><strong>PAT Test Status</strong></p>--%>
+                    <%--<div class="checkbox">--%>
+                        <%--<label for="validPAT"><input name="validPAT" id="validPAT" type="checkbox">PAT test in date</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="checkbox">--%>
+                        <%--<label for="expiringPAT"><input name="expiringPAT" id="expiringPAT" type="checkbox">PAT expiring soon</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="checkbox">--%>
+                        <%--<label for="invalidPAT"><input name="invalidPAT" id="invalidPAT" type="checkbox">PAT test expired</label>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="form-group col-md-4">--%>
+                    <%--<p><strong>Other Parameters</strong></p>--%>
+                    <%--<div class="checkbox">--%>
+                        <%--<label for="validPAT"><input name="validPAT" id="validPAT" type="checkbox">PAT test in date</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="checkbox">--%>
+                        <%--<label for="expiringPAT"><input name="expiringPAT" id="expiringPAT" type="checkbox">PAT expiring soon</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="checkbox">--%>
+                        <%--<label for="invalidPAT"><input name="invalidPAT" id="invalidPAT" type="checkbox">PAT test expired</label>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="form-row">--%>
+                <%--<div class="form-group col-md-12">--%>
+                    <%--<button id="btnSearchAdvanced" onclick="advancedSearch(); return false;" class="btn btn-primary btn-fullwidth" type="button">Search</button>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
         <%@include file="/WEB-INF/jspf/foot.jspf" %>
     </body>

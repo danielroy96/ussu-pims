@@ -38,5 +38,4 @@ public class ItemMapper implements RowMapper<Item> {
                 resultSet.getBoolean("pat_in_date")
         );
     }
-    
 }

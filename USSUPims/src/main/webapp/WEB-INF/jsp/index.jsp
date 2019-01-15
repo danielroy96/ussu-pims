@@ -111,15 +111,15 @@
                         </ul>
                     </a>
                 </div>
-                <div class="col-sm-6">
-                    <a href='eventstat' class='btn btn-primary dashboard-action'>
-                        <p class='button-heading-text'><span class='glyphicon glyphicon-stats'></span> Event stats & reports</p>
-                        <ul>
-                            <li>View job and event stats</li>
-                            <li>Generate job reports</li>
-                        </ul>
-                    </a>
-                </div>
+                <%--<div class="col-sm-6">--%>
+                    <%--<a href='eventstat' class='btn btn-primary dashboard-action'>--%>
+                        <%--<p class='button-heading-text'><span class='glyphicon glyphicon-stats'></span> Event stats & reports</p>--%>
+                        <%--<ul>--%>
+                            <%--<li>View job and event stats</li>--%>
+                            <%--<li>Generate job reports</li>--%>
+                        <%--</ul>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
             </div>
             <div class='container'>
                 <h1><small>Administrative tasks</small></h1>

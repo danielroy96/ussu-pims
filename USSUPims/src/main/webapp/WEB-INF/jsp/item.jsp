@@ -8,6 +8,29 @@
     </head>
     <body>
         <%@include file="/WEB-INF/jspf/nav.jspf" %>
+        <div class="modal fade" id="maintenanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="maintainItem" data-parsley-validate>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add maintenance log for ${item.itemTypeName}</h5>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p>Please describe the maintenance you have carried out on this item.</p>
+                                <label for="maintenanceDescription">Description</label>
+                                <textarea id="maintenanceDescription" class="form-control" placeholder="Description of maintenance" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" onclick="maintainItem();" class="btn btn-primary">Add maintenance log</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="container welcome-bar">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="glyphicon glyphicon-home" href="index"></a></li>
@@ -87,6 +110,7 @@
                 </div>
                 <div class="form-group col-md-6 maintenance-history">
                     <h2 id="maintenance-history-heading"><small>Maintenance history</small></h2>
+                    <a class="btn btn-warning" data-toggle="modal" data-target="#maintenanceModal">Add maintenance log</a>
                 </div>
             </div>
         </div>

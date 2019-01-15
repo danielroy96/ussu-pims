@@ -34,7 +34,7 @@ public class MaintenanceController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "item/{barcode}/maintain", method = RequestMethod.GET)
+    @RequestMapping(value = "item/{barcode}/maintain", method = RequestMethod.PUT)
     public ResponseEntity<Object> maintainItem(@PathVariable String barcode, @RequestParam String description, Principal principal) {
         maintenanceService.maintainItem(itemService.getItemId(barcode), description, userService.getUserID(principal));
         return new ResponseEntity<>(HttpStatus.OK);

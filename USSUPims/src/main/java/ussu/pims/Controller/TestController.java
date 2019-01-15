@@ -42,9 +42,4 @@ public class TestController {
         return itemService.getItem(barcode);
     }
 
-    /*@RequestMapping(value="/item/{barcode}/test", method = RequestMethod.PUT)
-    public ResponseEntity<Object> testItem(@RequestParam String testOperator, @PathVariable String barcode) {
-        testService.testItem(itemService.getItemId(barcode), Integer.parseInt(testOperator));
-        return new ResponseEntity<>(HttpStatus.OK);
-    }*/
 }

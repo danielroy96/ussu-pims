@@ -36,16 +36,20 @@ public class ItemReport extends AbstractXlsxView {
         header.createCell(7).setCellValue("PAT Test User");
         header.createCell(8).setCellValue("PAT Test in date");
 
+        CellStyle headerStyle = workbook.createCellStyle();
+        Font headerFont = workbook.createFont();
+        headerFont.setBold(true);
+        headerStyle.setFont(headerFont);
+        CellStyle expiredStyle = workbook.createCellStyle();
+        expiredStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
+        expiredStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        CellStyle inDateStyle = workbook.createCellStyle();
+        inDateStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+        inDateStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
         int rowNum = 1;
         for (ItemReportRow itemReportRow : itemReportRowList) {
             Row row = sheet.createRow(rowNum++);
-            CellStyle expiredStyle = workbook.createCellStyle();
-            expiredStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
-            expiredStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            CellStyle inDateStyle = workbook.createCellStyle();
-            inDateStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
-            expiredStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
             row.createCell(0).setCellValue(itemReportRow.getItem().getBarcode());
             row.createCell(1).setCellValue(itemReportRow.getItem().getItemTypeName());
             row.createCell(2).setCellValue(itemReportRow.getItem().getValue());
@@ -61,6 +65,10 @@ public class ItemReport extends AbstractXlsxView {
             }
             row.createCell(7).setCellValue(itemReportRow.getTest().getTestUserFullname());
             row.createCell(8).setCellValue(itemReportRow.getItem().isPatInDate());
+        }
+
+        for (int i = 0; i < 9; i++) {
+            sheet.autoSizeColumn(i);
         }
     }
 

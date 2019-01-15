@@ -26,7 +26,6 @@ public class ErrorHandler {
 
             @Override
             public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) {
-                //return your 404 page
                 ModelAndView mav = new ModelAndView("error");
                 mav.addObject("error", exception);
                 return mav;

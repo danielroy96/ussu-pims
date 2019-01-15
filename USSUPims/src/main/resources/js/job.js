@@ -48,7 +48,7 @@ function checkInOutItem() {
                     url: 'job/' + jobId + '?itemBarcode=' + barcode,
                     type: "PUT",
                     success: function () {
-                        $('#jobItems').prepend('<tr id="' + item.id + '"><td>' + item.barcode + '</td><td>' + item.itemTypeName + '</td><td>' + 'Checked out' + '</td><td><a onclick="removeJobItem(' + jobId + ',' + item.id + ')">Remove</a></td></tr>')
+                        $('#jobItems').prepend('<tr id="' + item.id + '"><td>' + item.barcode + '</td><td>' + item.itemTypeName + generateExpirationLabel(item.patInDate) + '</td><td>' + 'Checked out' + '</td><td><a onclick="removeJobItem(' + jobId + ',' + item.id + ')">Remove</a></td></tr>')
                     }
                 })
             } else {
@@ -90,7 +90,7 @@ function refreshJobItems() {
                 if (response[i].status == 'RETURNED') {
                     statusText = 'Returned';
                 }
-                $('#jobItems').prepend('<tr id="' + response[i].item.id + '"><td>' + response[i].item.barcode + '</td><td>' + response[i].item.itemTypeName + '</td><td>' + statusText + '</td><td><a onclick="removeJobItem(' + jobId + ',' + response[i].item.id + ')">Remove</a></td></tr>')
+                $('#jobItems').prepend('<tr id="' + response[i].item.id + '"><td>' + response[i].item.barcode + '</td><td>' + response[i].item.itemTypeName + generateExpirationLabel(response[i].item.patInDate) + '</td><td>' + statusText + '</td><td><a onclick="removeJobItem(' + jobId + ',' + response[i].item.id + ')">Remove</a></td></tr>')
             }
         }
     });
@@ -109,4 +109,16 @@ function removeJobItem(jobId, itemId) {
 function exportJob() {
     var jobId = $('#jobId').val();
 
+}
+
+function generateExpirationLabel(patInDate) {
+    var expirationLabel;
+    if (patInDate) {
+        expirationLabel = ' <span class="label label-success">In date</span>';
+    }
+    else if (!patInDate) {
+        expirationLabel = ' <span class="label label-danger">Expired</span>';
+    }
+    else expirationLabel = '';
+    return expirationLabel;
 }

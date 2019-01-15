@@ -24,11 +24,34 @@ $(document).ready(function () {
             }
         }
     });
+    buildMaintenanceTimeline();
+});
+
+function maintainItem() {
+    $('#maintainItem').parsley().validate();
+    if ($('#maintainItem').parsley().isValid()) {
+        var itemBarcode = encodeURIComponent($('#barcode').val());
+        var description = encodeURIComponent($('#maintenanceDescription').val());
+        console.log('maintain?barcode=' + itemBarcode + '&description=' + description);
+        $.ajax({
+            url: 'item/' + itemBarcode + '/maintain?description=' + description,
+            type: "PUT",
+            success: function() {
+                $('#maintenanceModal').modal('hide');
+                buildMaintenanceTimeline();
+            }
+        })
+    }
+}
+
+function buildMaintenanceTimeline() {
+    var barcode = encodeURIComponent($('#barcode').val());
     $.ajax({
         url: 'item/' + barcode + '/event/maintenance',
         type: "GET",
         success: function (response) {
             if (response.length !== 0) {
+                $('#maintenance-timeline').remove();
                 $('.maintenance-history').append($('<ul>', {class: 'timeline', id: 'maintenance-timeline'}));
             }
             for (var i = 0, l = response.length; i < l; i++) {
@@ -41,9 +64,9 @@ $(document).ready(function () {
                     maintenanceDescription = response[i].description;
                 }
                 $('#maintenance-timeline').append(
-                        $('<li>', {class: classToAdd + ' maintenance-timeline-item'}).append(
+                    $('<li>', {class: classToAdd + ' maintenance-timeline-item'}).append(
                         $('<div>', {class: 'timeline-panel'}).append(
-                        '<h4>' + response[i].displayText + '</h4><p>' + maintenanceDescription + '</p><p>' + response[i].eventDatetime + ' by ' + response[i].eventUserFullname + '</p>')));
+                            '<h4>' + response[i].displayText + '</h4><p>' + maintenanceDescription + '</p><p>' + response[i].eventDatetime + ' by ' + response[i].eventUserFullname + '</p>')));
             }
             $('.maintenance-timeline-item').append($('<div>', {class: 'timeline-badge warning maintenance-timeline-badge'}));
             $('.maintenance-timeline-badge').append($('<i>', {class: 'glyphicon glyphicon-wrench'}));
@@ -52,5 +75,4 @@ $(document).ready(function () {
             }
         }
     });
-});
-
+}

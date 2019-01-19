@@ -77,10 +77,12 @@
                                 <th>Barcode</th>
                                 <th>Item Type</th>
                                 <th>Test Operator</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="testedItems">
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

@@ -89,6 +89,13 @@ public class TestDAO {
         jdbcTemplate.update(eventSQL, itemID, testOperatorUserID, keyHolder.getKey());*/
     }
 
+    public void undoTest(int testId) {
+        final String deleteAuditSQL = "DELETE FROM pims.item_events WHERE test_id = ?";
+        jdbcTemplate.update(deleteAuditSQL, testId);
+        final String deleteTestSQL = "DELETE FROM pims.tests WHERE id = ?";
+        jdbcTemplate.update(deleteTestSQL, testId);
+    }
+
     /*public void testItem(final int itemID, final int testOperatorUserID) {
         final String testSQL = ""
                 + "INSERT INTO pims.tests ("

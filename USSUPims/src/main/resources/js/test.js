@@ -51,7 +51,7 @@ function test() {
                         url: 'item/' + barcode + '/test?earthResistanceOhms=' + earthResistanceOhms + '&insulationResistanceMOhms=' + insulationResistanceMOhms + '&testOperator=' + testOperator,
                         type: "PUT",
                         success: function (response) {
-                            addCompletedTestRow(barcode,response.itemTypeName, testOperatorName);
+                            addCompletedTestRow(barcode,response.itemTypeName, testOperatorName, response.testId);
                             resetScreen();
                         }
                     });
@@ -70,13 +70,23 @@ function enableDisableTestMeasurements() {
     $('.testMeasurements').toggle();
 }
 
-function addCompletedTestRow(barcode, itemTypeName, testOperator) {
+function addCompletedTestRow(barcode, itemTypeName, testOperator, testId) {
     $('#completedTestTable').show();
-    $('#completedTestTable tr:first').after('<tr><td>' + barcode + '</td><td>' + itemTypeName + '</td><td>' + testOperator + '</td></tr>');
+    $('#completedTestTable tr:first').after('<tr id="test-' + testId + '"><td>' + barcode + '</td><td>' + itemTypeName + '</td><td>' + testOperator + '</td><td><a href="#" onclick="undoTest(' + testId + '); return false;">Undo test</a></td></tr>');
 }
 
 function resetScreen() {
     $('#itemBarcode').val('');
     $('#earthResistanceOhms').val('');
     $('#insulationResistanceMOhms').val('');
+}
+
+function undoTest(testId) {
+    $.ajax({
+        url: 'test/' + testId + '/undo',
+        type: "PUT",
+        success: function() {
+            $('#test-' + testId).remove();
+        }
+    })
 }

@@ -33,6 +33,10 @@ public class TestService {
     public Test getLatestTest(int itemID) {
         return testDAO.getLatestTest(itemID);
     }
+
+    public void undoTest(int testId) {
+        testDAO.undoTest(testId);
+    }
     
     /*public void testItem(int itemID, int testOperatorUserID) {
         testDAO.testItem(itemID, testOperatorUserID);

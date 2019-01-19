@@ -15,4 +15,5 @@
 <link href="webjars/bootstrap-slider/9.7.3/css/bootstrap-slider.min.css" rel="stylesheet">
 <link href="css/timeline-css.css" rel="stylesheet">
 <link href="css/dashboard-css.css" rel="stylesheet">
+<link href="css/uat.css" rel="stylesheet">
 <title>PIMS</title>

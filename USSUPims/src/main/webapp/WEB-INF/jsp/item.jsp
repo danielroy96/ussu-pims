@@ -25,7 +25,51 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" onclick="maintainItem();" class="btn btn-primary">Add maintenance log</button>
+                            <button type="button" onclick="maintainItem();" class="btn btn-warning">Add maintenance log</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="patTest" data-parsley-validate>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel2">PAT test ${item.itemTypeName}</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="testOperator">Test Operator</label>
+                                <select id="testOperator" class="selectpicker form-control" data-live-search="true">
+                                    <option value="${userID}">${userFullName}</option>
+                                </select>
+                                <p class="form-text text-muted">Start typing to find a user</p>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <p><strong>Test measurements</strong></p>
+                                    <label for="includeTestMeasurements"><input name="includeTestMeasurements" id="includeTestMeasurements" type="checkbox" onchange="enableDisableTestMeasurements()"> Record test measurements</label>
+                                </div>
+                            </div>
+                            <div class="form-group testMeasurements" hidden>
+                                <label for="earthResistanceOhms">Earth resistance</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="tel" id="earthResistanceOhms" name="earthResistanceOhms" aria-describedby="earthResistanceOhmsUnits" required>
+                                    <span class="input-group-addon" id="earthResistanceOhmsUnits">Ω</span>
+                                </div>
+                            </div>
+                            <div class="form-group testMeasurements" hidden>
+                                <label for="insulationResistanceMOhms">Insulation resistance</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="tel" id="insulationResistanceMOhms" name="insulationResistanceMOhms" aria-describedby="insulationResistanceMOhmsUnits" required>
+                                    <span class="input-group-addon" id="insulationResistanceMOhmsUnits">MΩ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" onclick="test();" class="btn btn-success">PAT test item</button>
                         </div>
                     </form>
                 </div>
@@ -107,6 +151,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6 pat-test-history">
                     <h2 id="pat-test-history-heading"><small>PAT test history</small></h2>
+                    <a class="btn btn-success" data-toggle="modal" data-target="#testModal">PAT test item</a>
                 </div>
                 <div class="form-group col-md-6 maintenance-history">
                     <h2 id="maintenance-history-heading"><small>Maintenance history</small></h2>

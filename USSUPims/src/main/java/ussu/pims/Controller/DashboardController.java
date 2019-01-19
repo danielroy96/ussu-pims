@@ -103,8 +103,11 @@ public class DashboardController {
     }
 
     @RequestMapping(value = "/item", method = RequestMethod.GET)
-    protected String itemUpdate(@RequestParam String itemBarcode, Model model) throws Exception {
+    protected String itemUpdate(@RequestParam String itemBarcode, Model model, Principal principal) throws Exception {
         Item item = itemService.getItem(itemBarcode);
+        User user = userService.loadUserByUsername(principal.getName());
+        model.addAttribute("userFullName", user.getTitle() + " " + user.getForename() + " " + user.getSurname());
+        model.addAttribute("userID", user.getId());
         model.addAttribute(item);
         return "item";
     }

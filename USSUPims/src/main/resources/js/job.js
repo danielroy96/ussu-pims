@@ -27,7 +27,7 @@ function addJob() {
             url: 'job?name=' + name + '&description=' + description + '&clientId=' + client + '&jobStartDatetime=' + jobStartDatetime + '&jobEndDatetime=' + jobEndDatetime + '&venue=' + venue,
             type: "PUT",
             success: function (response) {
-                window.location.replace('job-details?JobId=' + response);
+                window.location.replace('job-details?jobId=' + response);
             }
         });
     }

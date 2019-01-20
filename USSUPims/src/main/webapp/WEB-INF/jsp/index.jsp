@@ -74,7 +74,7 @@
             <div class="container">
                 <div class="col-sm-6">
                     <a href="test" class="btn btn-primary dashboard-action">
-                        <p class="button-heading-text"><span class="glyphicon glyphicon-screenshot"></span> PAT test equipment</p>
+                        <p class="button-heading-text"><span class="glyphicon glyphicon-screenshot"></span> PAT testing</p>
                         <ul>
                             <li>Test equipment for electrical safety</li>
                             <li>Bulk process barcodes</li>

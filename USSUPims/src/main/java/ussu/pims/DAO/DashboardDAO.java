@@ -783,4 +783,30 @@ public class DashboardDAO {
         return jdbcTemplate.query(SQL, new LeaderboardDataPointMapper());
     }
 
+    public int myMonthTests(int userId) {
+        String SQL = "SELECT\n" +
+                "\tCOUNT(*)\n" +
+                "FROM pims.tests pt\n" +
+                "WHERE pt.test_user = ?\n" +
+                "AND pt.test_datetime > DATE_SUB(NOW(),INTERVAL 1 MONTH)";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, userId);
+    }
+
+    public int myYearTests(int userId) {
+        String SQL = "SELECT\n" +
+                "\tCOUNT(*)\n" +
+                "FROM pims.tests pt\n" +
+                "WHERE pt.test_user = ?\n" +
+                "AND pt.test_datetime > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, userId);
+    }
+
+    public int everyoneYearTests() {
+        String SQL = "SELECT\n" +
+                "\tCOUNT(*)\n" +
+                "FROM pims.tests pt\n" +
+                "WHERE pt.test_datetime > DATE_SUB(NOW(),INTERVAL 1 YEAR)";
+        return jdbcTemplate.queryForObject(SQL, Integer.class);
+    }
+
 }

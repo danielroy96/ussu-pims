@@ -54,6 +54,9 @@ public class DashboardController {
         User user = userService.loadUserByUsername(username);
         model.addAttribute("userForename", user.getForename());
         model.addAttribute("userRole", user.getAuthorities().toString());
+        model.addAttribute("myMonthTest", dashboardService.myMonthTests(user.getId()));
+        model.addAttribute("myYearTest", dashboardService.myYearTests(user.getId()));
+        model.addAttribute("everyoneYearTest", dashboardService.everyoneYearTests());
         return "index";
     }
 
@@ -113,9 +116,13 @@ public class DashboardController {
     }
 
     @RequestMapping(value = "/pat", method = RequestMethod.GET)
-    protected String reportPAT(Model model) throws Exception {
+    protected String reportPAT(Model model, Principal principal) throws Exception {
+        int userId = userService.getUserID(principal);
         model.addAttribute("yearLeaderboard", dashboardService.oneYearPatLeaderboard());
         model.addAttribute("allTimeLeaderboard", dashboardService.allTimePatLeaderboard());
+        model.addAttribute("myMonthTest", dashboardService.myMonthTests(userId));
+        model.addAttribute("myYearTest", dashboardService.myYearTests(userId));
+        model.addAttribute("everyoneYearTest", dashboardService.everyoneYearTests());
         return "report/pat";
     }
     

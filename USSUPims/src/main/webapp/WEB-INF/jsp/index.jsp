@@ -39,6 +39,24 @@
             <h1><small>PAT testing</small></h1>
             <hr>
             <h4>Dashboard PAT test stats <small> Number of items PAT tested</small></h4>
+            <br>
+            <div class="form-row" style="margin-bottom: 1em;">
+                <div class="form-group col-md-4">
+                    <div class="text-muted text-center">I have tested</div>
+                    <h1 class="text-center">${myMonthTest}</h1>
+                    <div class="text-muted text-center">items this month</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="text-muted text-center">I have tested</div>
+                    <h1 class="text-center">${myYearTest}</h1>
+                    <div class="text-muted text-center">items this year</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="text-muted text-center">Everyone has tested</div>
+                    <h1 class="text-center">${everyoneYearTest}</h1>
+                    <div class="text-muted text-center">items this year</div>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <canvas id="patStatsWeek"></canvas>

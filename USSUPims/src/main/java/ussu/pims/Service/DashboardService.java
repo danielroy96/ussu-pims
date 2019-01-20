@@ -41,5 +41,17 @@ public class DashboardService {
     public List<LeaderboardDataPoint> allTimePatLeaderboard() {
         return dashboardDAO.allTimePatLeaderboard();
     }
+
+    public int myMonthTests(int userId) {
+        return dashboardDAO.myMonthTests(userId);
+    }
+
+    public int myYearTests(int userId) {
+        return dashboardDAO.myYearTests(userId);
+    }
+
+    public int everyoneYearTests() {
+        return dashboardDAO.everyoneYearTests();
+    }
     
 }

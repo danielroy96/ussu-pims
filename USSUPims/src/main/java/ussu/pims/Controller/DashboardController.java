@@ -131,11 +131,16 @@ public class DashboardController {
         return "addjob";
     }
     
-        @RequestMapping(value="/job-details", method=RequestMethod.GET)
+    @RequestMapping(value="/job-details", method=RequestMethod.GET)
     protected String eventDetails(@RequestParam String jobId, Model model) throws Exception {
         Job job = jobService.getJob(Integer.parseInt(jobId));
         model.addAttribute(job);
         return "job";
+    }
+
+    @RequestMapping("favicon.ico")
+    String favicon() {
+        return "redirect:/img/favicon.ico";
     }
 
 //    @RequestMapping(value = "/user/{userID}", method = RequestMethod.GET)

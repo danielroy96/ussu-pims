@@ -35,7 +35,20 @@ $(document).ready(function () {
 
 function scanBarcode() {
     var barcode = encodeURIComponent($('#barcode').val());
-    window.location.replace('item?itemBarcode=' + barcode);
+    $.ajax({
+        url: 'item/' + barcode + '/check',
+        method: "GET",
+        success: function(response){
+            if (response === "barcode_in_use") {
+                window.location.replace('item?itemBarcode=' + barcode);
+                $('#barcode').removeClass('parsley-error');
+            }
+            else {
+                $('#barcode').addClass('parsley-error');
+                $('#barcode').val('');
+            }
+        }
+    });
 }
 
 function selectQuickSearch() {

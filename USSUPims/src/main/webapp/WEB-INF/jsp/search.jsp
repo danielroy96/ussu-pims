@@ -25,6 +25,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <input name="barcode" id="barcode" class="form-control" placeholder="Scan barcode..." autofocus>
+                        <p class="form-text text-muted"><a href="add">Add a new item...</a></p>
                     </div>
                     <div class="form-group col-md-6">
                         <button id="btnScanBarcode" onclick="scanBarcode(); return false;" type="submit" class="btn btn-primary btn-fullwidth">Select item</button>

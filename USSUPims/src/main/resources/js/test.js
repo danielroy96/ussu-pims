@@ -59,6 +59,7 @@ function test() {
                     $('#noTestAlert').hide();
                 } else {
                     $('#itemBarcode').addClass('parsley-error');
+                    $('#itemBarcode').val('');
                 }
             },
         });
@@ -72,7 +73,7 @@ function enableDisableTestMeasurements() {
 
 function addCompletedTestRow(barcode, itemTypeName, testOperator, testId) {
     $('#completedTestTable').show();
-    $('#completedTestTable tr:first').after('<tr id="test-' + testId + '"><td>' + barcode + '</td><td>' + itemTypeName + '</td><td>' + testOperator + '</td><td><a href="#" onclick="undoTest(' + testId + '); return false;">Undo test</a></td></tr>');
+    $('#completedTestTable tr:first').after('<tr id="test-' + testId + '"><td><a href="item?itemBarcode=' + barcode + '">' + barcode + '</ahref></td><td>' + itemTypeName + '</td><td>' + testOperator + '</td><td><a href="#" onclick="undoTest(' + testId + '); return false;">Undo test</a></td></tr>');
 }
 
 function resetScreen() {

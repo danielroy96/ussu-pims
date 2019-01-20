@@ -20,10 +20,7 @@ import ussu.pims.Model.ItemReportRow;
 import ussu.pims.Model.Job;
 import ussu.pims.Model.User;
 import ussu.pims.Report.ItemReport;
-import ussu.pims.Service.ItemService;
-import ussu.pims.Service.JobService;
-import ussu.pims.Service.ReportService;
-import ussu.pims.Service.UserService;
+import ussu.pims.Service.*;
 
 /**
  *
@@ -40,6 +37,9 @@ public class DashboardController {
     
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private DashboardService dashboardService;
 
     /**
      * Maps requests for /index to the index view
@@ -114,6 +114,8 @@ public class DashboardController {
 
     @RequestMapping(value = "/pat", method = RequestMethod.GET)
     protected String reportPAT(Model model) throws Exception {
+        model.addAttribute("yearLeaderboard", dashboardService.oneYearPatLeaderboard());
+        model.addAttribute("allTimeLeaderboard", dashboardService.allTimePatLeaderboard());
         return "report/pat";
     }
     

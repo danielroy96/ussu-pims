@@ -30,6 +30,52 @@
                     <div class="text-muted text-center">Last year</div>
                 </div>
             </div>
+            <h1><small>PAT testing leaderboard</small></h1>
+            <hr>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <h2><small>Last 12 months</small></h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Rank</td>
+                                <td>Test Operator</td>
+                                <td>Number of Tests</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${yearLeaderboard}" var="datapoint">
+                                <tr>
+                                    <td>${datapoint.rank}</td>
+                                    <td>${datapoint.userName}</td>
+                                    <td>${datapoint.testCount}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group col-md-6">
+                    <h2><small>All time</small></h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Rank</td>
+                            <td>Test Operator</td>
+                            <td>Number of Tests</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${allTimeLeaderboard}" var="datapoint">
+                            <tr>
+                                <td>${datapoint.rank}</td>
+                                <td>${datapoint.userName}</td>
+                                <td>${datapoint.testCount}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="form-row">
                 <h1><small>Download Microsoft&reg; Excel reports</small></h1>
                 <hr>

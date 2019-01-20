@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ussu.pims.Mapper.ChartDataPointMapper;
+import ussu.pims.Mapper.LeaderboardDataPointMapper;
 import ussu.pims.Model.ChartDataPoint;
+import ussu.pims.Model.LeaderboardDataPoint;
 
 /**
  *
@@ -736,6 +738,49 @@ public class DashboardDAO {
                 + "    AND t.test_user = ?\n"
                 + ") my_tests ON all_tests.test_date = my_tests.test_date;";
         return jdbcTemplate.query(SQL, new ChartDataPointMapper(), userID, userID, userID, userID, userID, userID, userID, userID, userID, userID, userID, userID);
+    }
+
+    public List<LeaderboardDataPoint> oneYearPatLeaderboard() {
+        String SQL = "" +
+                "SELECT\n" +
+                " \tconcat(ud.forename, ' ', ud.surname) user\n" +
+                ", \ttagg.test_count\n" +
+                "FROM (\n" +
+                "\tSELECT\n" +
+                "\t  ty.test_user\n" +
+                "\t, count(*) test_count\n" +
+                "\tFROM (\n" +
+                "\t\tSELECT *\n" +
+                "\t\tFROM pims.tests pt\n" +
+                "\t\tWHERE pt.test_datetime > DATE_SUB(NOW(),INTERVAL 1 YEAR)\n" +
+                "\t) ty\n" +
+                "\tGROUP BY ty.test_user\n" +
+                ")tagg\n" +
+                "JOIN pims.user_details ud ON tagg.test_user = ud.user_id AND ud.status_control = 'C'\n" +
+                "ORDER BY tagg.test_count DESC\n" +
+                "LIMIT 0, 15\n";
+        return jdbcTemplate.query(SQL, new LeaderboardDataPointMapper());
+    }
+
+    public List<LeaderboardDataPoint> allTimePatLeaderboard() {
+        String SQL = "" +
+                "SELECT\n" +
+                " \tconcat(ud.forename, ' ', ud.surname) user\n" +
+                ", \ttagg.test_count\n" +
+                "FROM (\n" +
+                "\tSELECT\n" +
+                "\t  ty.test_user\n" +
+                "\t, count(*) test_count\n" +
+                "\tFROM (\n" +
+                "\t\tSELECT *\n" +
+                "\t\tFROM pims.tests pt\n" +
+                "\t) ty\n" +
+                "\tGROUP BY ty.test_user\n" +
+                ")tagg\n" +
+                "JOIN pims.user_details ud ON tagg.test_user = ud.user_id AND ud.status_control = 'C'\n" +
+                "ORDER BY tagg.test_count DESC\n" +
+                "LIMIT 0, 15\n";
+        return jdbcTemplate.query(SQL, new LeaderboardDataPointMapper());
     }
 
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ussu.pims.DAO.DashboardDAO;
 import ussu.pims.Model.ChartDataPoint;
+import ussu.pims.Model.LeaderboardDataPoint;
 
 /**
  *
@@ -31,6 +32,14 @@ public class DashboardService {
 
     public List<ChartDataPoint> getAllTests1Year(int userID) {
         return dashboardDAO.getAllTests1Year(userID);
+    }
+
+    public List<LeaderboardDataPoint> oneYearPatLeaderboard() {
+        return dashboardDAO.oneYearPatLeaderboard();
+    }
+
+    public List<LeaderboardDataPoint> allTimePatLeaderboard() {
+        return dashboardDAO.allTimePatLeaderboard();
     }
     
 }

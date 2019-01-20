@@ -42,5 +42,5 @@ public class DashboardRestController {
     public List<ChartDataPoint> getAllTests1Year(Principal principal) {
         return dashboardService.getAllTests1Year(userService.getUserID(principal));
     }
-    
+
 }
